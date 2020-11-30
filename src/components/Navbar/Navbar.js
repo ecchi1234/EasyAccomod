@@ -38,28 +38,33 @@ const Navbar = () => {
 
   return (
     <>
-      <IconContext.Provider value={{ color: "#fff" }}>
+      <IconContext.Provider value={{ color: "#274abb" }}>
         <Nav>
           <NavbarContainer>
             <NavLogo to="/" onClick={closeMobileMenu}>
               <NavIcon />
-              ULTRA
+              Easy <p style={{color: "#274abb", fontWeight: 600}}>Accomod</p>
             </NavLogo>
             <MobileIcon onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </MobileIcon>
             <NavMenu onClick={handleClick} click={click}>
               <NavItem>
-                <NavLinks to="/">Home</NavLinks>
+                <NavLinks to="/">Trang chủ</NavLinks>
               </NavItem>
 
               <NavItem>
-                <NavLinks to="/services">Services</NavLinks>
+                <NavLinks to="/services">Nhà trọ</NavLinks>
               </NavItem>
 
               <NavItem>
-                <NavLinks to="/products">Products</NavLinks>
+                <NavLinks to="/products">Về chúng tôi</NavLinks>
               </NavItem>
+
+              <NavItem>
+                <NavLinks to="/products">Liên hệ</NavLinks>
+              </NavItem>
+
               <NavItemBtn>
                 {button ? (
                   <NavBtnLink to="/sign-up">
