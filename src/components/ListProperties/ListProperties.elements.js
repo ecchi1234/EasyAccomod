@@ -7,19 +7,57 @@ export const PricingSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #fff;
+  align-items: center;
+  background: #f7f7f7;
 `;
 
 export const PricingWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
-  @media screen and (max-width: 960px) {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px;
+
+  @media screen and (min-width: 576px) {
+    width: 540px;
+    max-width: 100%;
     margin: 0 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 720px;
+    max-width: 100%;
+    margin: 0 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  @media screen and (min-width: 992px) {
+    width: 960px;
+    max-width: 100%;
+    margin: 0 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+// cái này chỉnh vì nó bị bé hơn so với bản gốc ?? không rõ vì sao
+  @media screen and (min-width: 1200px) {
+    width: 1170px;
+    max-width: 100%;
+    /* padding-right: 15px;
+    padding-left: 15px; */
   }
 `;
 
@@ -33,22 +71,36 @@ export const PricingContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media screen and (max-width: 960px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  flex-wrap: wrap;
+  width: 100%;
+
+  @media screen and (min-width: 576px) {
+    margin-right: -15px;
+    margin-left: -15px;
+    
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-right: -15px;
+    margin-left: -15px;
+    
+  }
+
+  @media screen and (min-width: 992px) {
+    margin-right: -15px;
+    margin-left: -15px;
+    
   }
 `;
-
+// cai nay la cai quyet dinh den responsive cua minh phai sua cho width cua no thay doi
+// thay doi theo man hinh
 export const PricingCard = styled(Link)`
   background: #fff;
   box-shadow: 0 6px 20px rgba(56, 125, 255, 0.2);
-  width: 349px;
-  height: 547px;
+  height: 100%;
   text-decoration: none;
   border-radius: 4px;
+
   &:nth-child(2) {
     margin: 24px;
   }
@@ -59,16 +111,26 @@ export const PricingCard = styled(Link)`
   }
   @media screen and (max-width: 960px) {
     width: 90%;
+    min-height: 100%;
     &:hover {
       transform: none;
     }
+  }
+
+  @media screen and (min-width: 768px) {
+    flex: 0 0 calc(50% - 30px);
+    max-width: calc(50% - 30px);
+  }
+  
+  @media screen and (min-width: 992px) {
+    flex: 0 0 calc(100%/3 - 30px);
+    max-width: calc(100%/3 - 30px);
   }
 `;
 
 export const PricingCardInfo = styled.div`
   display: flex;
   flex-direction: column;
-  /* height: 500px; */
   padding: 20px;
   align-items: center;
   color: #fff;
@@ -110,6 +172,8 @@ export const PricingSectionHeading = styled.section`
   position: relative;
   margin-bottom: 2.5rem;
   align-self: flex-start;
+  
+  margin-left: 25px;
 
   &::before {
     top: 0;
@@ -119,7 +183,11 @@ export const PricingSectionHeading = styled.section`
     content: "";
     border-radius: 3px;
     position: absolute;
-    background-color: #274abb;
+    background-color: #4b59f7;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-left: 10px;
   }
 `;
 
@@ -132,7 +200,7 @@ export const PricingTopSubHeading = styled.h3`
 `;
 export const PricingBottomSubHeading = styled.h2`
   font-size: 28px;
-  color: #274abb;
+  color: #4b59f7;
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
@@ -141,11 +209,16 @@ export const PricingBottomSubHeading = styled.h2`
 export const PricingCardImageHeading = styled.img`
   width: 100%;
   height: auto;
+  z-index: 2;
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: middle;
+  border-style: none;
 `;
 
 export const PricingCardInfoWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
 `;
 
 export const PricingCardInfoTitle = styled(Link)`
@@ -157,7 +230,7 @@ export const PricingCardInfoTitle = styled(Link)`
   color: #444;
   margin-bottom: 3px;
   &:hover {
-    color: #274abb;
+    color: #4b59f7;
     transition: all 0.3s ease;
   }
 `;
@@ -217,7 +290,7 @@ export const HouseCost = styled(Link)`
   font-family: "Montserrat", sans-serif;
 
   &:hover {
-    color: #274abb;
+    color: #4b59f7;
     transition: all 0.3s ease;
     margin-bottom: 3px;
   }
@@ -266,3 +339,5 @@ export const PropertiesLinkContainer = styled.div`
   align-items: center;
   margin-top: 45px;
 `;
+
+

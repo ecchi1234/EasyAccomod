@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import {FaMagento} from 'react-icons/fa';
+import {IoHome} from 'react-icons/io5';
 export const FooterContainer = styled.div`
   background-color: #101522;
   padding: 4rem 0 2rem 0;
@@ -143,7 +143,7 @@ export const SocialLogo = styled(Link)`
   margin-bottom: 16px;
 `;
 
-export const SocialIcon = styled(FaMagento)`
+export const SocialIcon = styled(IoHome)`
   margin-right: 10px;
 `;
 

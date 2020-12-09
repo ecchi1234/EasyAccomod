@@ -37,10 +37,10 @@ import {
   PropertyTimeStart,
   PropertyTimeStartDesc,
   PropertiesLinkContainer,
-  PropertiesBtnLink
+  PropertiesBtnLink,
 } from "./ListProperties.elements";
 
-function ListProperties() {
+function ListProperties({time}) {
   const [hoverLike, setHoverLike] = useState(true);
   const handleHoverLikeIcon = () => setHoverLike(true);
   return (
@@ -48,10 +48,11 @@ function ListProperties() {
       <PricingSection>
         <PricingWrapper>
           <PricingSectionHeading>
-            <PricingTopSubHeading>recently</PricingTopSubHeading>
+            <PricingTopSubHeading>{time}</PricingTopSubHeading>
             <PricingBottomSubHeading>Nhà trọ</PricingBottomSubHeading>
           </PricingSectionHeading>
           <PricingContainer>
+           
           <PricingCard to="/sign-up">
               <PricingCardImageHeading
                 src={
@@ -75,7 +76,7 @@ function ListProperties() {
                     </PricingCardInfoLocation>
                   </PricingCardInfoSubTitle>
                   <IconContext.Provider
-                    value={{ color: "#274abb", size: "1rem" }}
+                    value={{ color: "#4b59f7", size: "1rem" }}
                   >
                     <PricingCardInfoDetails>
                       <PricingCardInfoItem>
@@ -161,7 +162,7 @@ function ListProperties() {
                     </PricingCardInfoLocation>
                   </PricingCardInfoSubTitle>
                   <IconContext.Provider
-                    value={{ color: "#274abb", size: "1rem" }}
+                    value={{ color: "#4b59f7", size: "1rem" }}
                   >
                     <PricingCardInfoDetails>
                       <PricingCardInfoItem>
@@ -247,7 +248,7 @@ function ListProperties() {
                     </PricingCardInfoLocation>
                   </PricingCardInfoSubTitle>
                   <IconContext.Provider
-                    value={{ color: "#274abb", size: "1rem" }}
+                    value={{ color: "#4b59f7", size: "1rem" }}
                   >
                     <PricingCardInfoDetails>
                       <PricingCardInfoItem>

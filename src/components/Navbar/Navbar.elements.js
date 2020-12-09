@@ -5,7 +5,7 @@ import { Container } from "../../assets/style/globalStyle";
 
 export const Nav = styled.nav`
   background: #fff;
-  height: 102px;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,7 +18,7 @@ export const Nav = styled.nav`
 export const NavbarContainer = styled(Container)`
   display: flex;
   justify-content: space-between;
-  height: 102px;
+  height: 80px;
 
   ${Container}
 `;
@@ -65,7 +65,7 @@ export const NavMenu = styled.ul`
     width: 100%;
     height: 90vh;
     position: absolute;
-    top: 102px;
+    top: 80px;
     left: ${({ click }) => (click ? 0 : "-100%")};
     opacity: 1;
     transition: all 0.5s ease;
@@ -74,7 +74,7 @@ export const NavMenu = styled.ul`
 `;
 
 export const NavItem = styled.li`
-  height: 102px;
+  height: 80px;
   border-bottom: 2px solid transparent;
   &:hover {
     border-bottom: 2px solid #4b59f7;
@@ -97,6 +97,7 @@ export const NavLinks = styled(Link)`
   height: 100%;
 
   @media screen and (max-width: 960px) {
+    color: #fff;
     text-align: center;
     padding: 2rem;
     width: 100%;
@@ -115,7 +116,7 @@ export const NavItemBtn = styled.li`
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 120px;
+    height: 80px;
   }
 `;
 
