@@ -13,6 +13,7 @@ export const homeObjOne = {
   start: '',
   img: require('../../assets/img/svg-4.svg').default,
   alt: "Image",
+  first: true
 };
 
 export const homeObjTwo = {
@@ -30,6 +31,7 @@ export const homeObjTwo = {
     start: 'true',
     img: require('../../assets/img/info-1.jpg').default,
     alt: "Image",
+    first: false
   };
 
   export const homeObjThree = {

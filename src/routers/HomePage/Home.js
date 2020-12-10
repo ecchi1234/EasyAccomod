@@ -5,6 +5,7 @@ import { InfoSection } from "../../components";
 import ListProperties from "../../components/ListProperties/ListProperties";
 import WelcomeSection from "../../components/WelcomeSection/WelcomeSection";
 import PlaceSection from "../../components/PlaceSection/PlaceSection";
+import CustomerSection from "../../components/CustomerSection/CustomerSection";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <WelcomeSection {...homeObjFive}></WelcomeSection>
       <ListProperties {...listOne}></ListProperties>
       <PlaceSection/>
+      <CustomerSection/>
       {/* <InfoSection {...homeObjThree}></InfoSection>
       <InfoSection {...homeObjFour}></InfoSection> */}
     </>
