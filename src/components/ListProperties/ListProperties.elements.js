@@ -136,36 +136,7 @@ export const PricingCardInfo = styled.div`
   color: #fff;
 `;
 
-export const PricingCardIcon = styled.div`
-  margin: 24px 0;
-`;
 
-export const PricingCardPlan = styled.h3`
-  margin-bottom: 5px;
-  font-size: 24px;
-`;
-
-export const PricingCardCost = styled.h4`
-  font-size: 40px;
-`;
-
-export const PricingCardLength = styled.p`
-  font-size: 14px;
-  margin-bottom: 24px;
-`;
-
-export const PricingCardFeatures = styled.ul`
-  margin: 16px 0 32px;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #a9b3c1;
-`;
-
-export const PricingCardFeature = styled.li`
-  margin-bottom: 10px;
-`;
 
 export const PricingSectionHeading = styled.section`
   padding-left: 35px;
