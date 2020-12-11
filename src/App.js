@@ -3,7 +3,7 @@ import GlobalStyle from './assets/style/globalStyle';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Footer, Navbar } from "./components";
 import Home from './routers/HomePage/Home';
-import Products from './routers/Products/Products';
+import Products from './routers/Accommodations/Products';
 import Services from './routers/Services/Services';
 import SignUp from './routers/SignUp/SignUp';
 import ScrollToTop from "./components/ScrollToTop";

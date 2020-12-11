@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { FaStar, FaQuoteLeft } from "react-icons/fa";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export const CustomerSec = styled.div`
   padding: 100px 0 160px;
@@ -19,7 +22,7 @@ export const CustomerSectionWrap = styled.div`
   padding-right: 15px;
   padding-left: 15px;
   width: 100%;
-
+  // cái này có vấn đề chăng ??
   @media screen and (min-width: 576px) {
     width: 540px;
     max-width: 100%;
@@ -106,12 +109,12 @@ export const CustomerContainerOwlCarousel = styled.div`
   position: relative;
 `;
 
-export const CustomerOwlCarouselStageOuter = styled.div`
+export const CustomerOwlCarouselStageOuter = styled(Slider)`
   position: relative;
   overflow: hidden;
 `;
 
-export const CustomerOwlCarouselStage = styled.div`
+export const CustomerOwlCarouselStage = styled(Slider)`
   /* transform: translate3d(-2636px, 0px, 0px);
   transition: all 0.25s ease 0s; */
   width: 4521px;
@@ -134,7 +137,6 @@ export const CustomerOwlItemContent = styled.div`
   background: #fff;
   color: #000;
   padding: 2rem;
-  border-radius: 10px;
 `;
 
 export const CustomerName = styled.h3`
@@ -203,7 +205,7 @@ export const CustomerCommentContainer = styled.div``;
 
 export const CustomerQuoteIcon = styled(FaQuoteLeft)`
   font-size: 1.2rem;
-  left: 136px;
+  left: 149px;
   top: -5px;
   position: relative;
   color: #274abb;
