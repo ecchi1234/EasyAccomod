@@ -116,6 +116,7 @@ export const PricingCard = styled(Link)`
       transform: none;
     }
   }
+  
 
   @media screen and (min-width: 768px) {
     flex: 0 0 calc(50% - 30px);

@@ -54,11 +54,11 @@ const Navbar = () => {
               </NavItem>
 
               <NavItem>
-                <NavLinks to="/services">Nhà trọ</NavLinks>
+                <NavLinks to="/products">Nhà trọ</NavLinks>
               </NavItem>
 
               <NavItem>
-                <NavLinks to="/products">Về chúng tôi</NavLinks>
+                <NavLinks to="/services">Về chúng tôi</NavLinks>
               </NavItem>
 
               <NavItem>

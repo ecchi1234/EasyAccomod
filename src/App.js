@@ -3,10 +3,11 @@ import GlobalStyle from './assets/style/globalStyle';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Footer, Navbar } from "./components";
 import Home from './routers/HomePage/Home';
-import Products from './routers/Accommodations/Products';
+import Accommodations from './routers/Accommodations/Accommodations';
 import Services from './routers/Services/Services';
 import SignUp from './routers/SignUp/SignUp';
 import ScrollToTop from "./components/ScrollToTop";
+import AccommodationDetail from "./routers/AccommodationDetail/AccommodationDetail";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       <Navbar />
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/products" exact component={Products} />
+        <Route path="/products" exact component={Accommodations} />
+        <Route path="/product-detail" exact component={AccommodationDetail} />
         <Route path="/services" exact component={Services} />
         <Route path="/sign-up" exact component={SignUp} />
       </Switch>
