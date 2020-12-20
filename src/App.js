@@ -8,6 +8,7 @@ import Services from './routers/Services/Services';
 import SignUp from './routers/SignUp/SignUp';
 import ScrollToTop from "./components/ScrollToTop";
 import AccommodationDetail from "./routers/AccommodationDetail/AccommodationDetail";
+import Login from './routers/Login/Login';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/product-detail" exact component={AccommodationDetail} />
         <Route path="/services" exact component={Services} />
         <Route path="/sign-up" exact component={SignUp} />
+        <Route path="/login" exact component={Login} />
       </Switch>
       <Footer></Footer>
     </Router>

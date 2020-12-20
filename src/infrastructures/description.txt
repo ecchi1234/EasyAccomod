@@ -1,0 +1,2 @@
+folder này để chứa các hàm thực hiện một số chức năng cụ thể được sử dụng trong ứng dụng 
+(ví dụ hàm tính thời gian, đổi sang chữ in hoa,....)

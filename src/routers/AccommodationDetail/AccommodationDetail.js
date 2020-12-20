@@ -88,6 +88,7 @@ import {
   ClearFix,
   LeaveRatingTitle,
   StarLabel,
+  StarLabelIcon,
   InputRating,
   ReviewFormContainer,
   FormGroupContainer,
@@ -126,7 +127,7 @@ import {
   RecentPrice,
   Time,
   TimeText,
-  Banner
+  Banner,
 } from "./AccommodationDetail.elements";
 
 const AccommodationDetail = () => {
@@ -453,11 +454,11 @@ const AccommodationDetail = () => {
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.8955429165135!2d105.78008511360125!3d21.03686519288047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab4aaba3425b%3A0x8d2cc2bd70d95673!2zVFQgSOG7lyB0cuG7oyDEkMOgbyB04bqhbyB2w6AgUGjDoXQgdHJp4buDbiDEkMO0IHRo4buLIMSQ4bqhaSBo4buNYywgMTQ0IFh1w6JuIFRo4buneSwgTWFpIEThu4tjaCwgQ-G6p3UgR2nhuqV5LCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1608279207403!5m2!1svi!2s"
                   width="100%"
                   height="450"
-                  frameborder="0"
+                  frameBorder="0"
                   style={{ border: 0 }}
-                  allowfullscreen=""
+                  allowFullScreen=""
                   aria-hidden="false"
-                  tabindex="0"
+                  tabIndex="0"
                 ></iframe>
               </AccommodDetailMap>
               <AccommodDetailReview>
@@ -607,7 +608,9 @@ const AccommodationDetail = () => {
                           id="rating-1"
                           value={1}
                         ></InputRating>
-                        <StarLabel for="rating-1"></StarLabel>
+                        <StarLabel htmlFor="rating-1">
+                          <StarLabelIcon></StarLabelIcon>
+                        </StarLabel>
 
                         <InputRating
                           type="radio"
@@ -615,7 +618,9 @@ const AccommodationDetail = () => {
                           id="rating-2"
                           value={2}
                         ></InputRating>
-                        <StarLabel for="rating-2"></StarLabel>
+                        <StarLabel htmlFor="rating-2">
+                          <StarLabelIcon></StarLabelIcon>
+                        </StarLabel>
 
                         <InputRating
                           type="radio"
@@ -623,7 +628,9 @@ const AccommodationDetail = () => {
                           id="rating-3"
                           value={3}
                         ></InputRating>
-                        <StarLabel for="rating-3"></StarLabel>
+                        <StarLabel htmlFor="rating-3">
+                          <StarLabelIcon></StarLabelIcon>
+                        </StarLabel>
 
                         <InputRating
                           type="radio"
@@ -631,7 +638,9 @@ const AccommodationDetail = () => {
                           id="rating-4"
                           value={4}
                         ></InputRating>
-                        <StarLabel for="rating-4"></StarLabel>
+                        <StarLabel htmlFor="rating-4">
+                          <StarLabelIcon></StarLabelIcon>
+                        </StarLabel>
 
                         <InputRating
                           type="radio"
@@ -639,7 +648,9 @@ const AccommodationDetail = () => {
                           id="rating-5"
                           value={5}
                         ></InputRating>
-                        <StarLabel for="rating-5"></StarLabel>
+                        <StarLabel htmlFor="rating-5">
+                          <StarLabelIcon></StarLabelIcon>
+                        </StarLabel>
                       </StarToRate>
                       <ClearFix></ClearFix>
                     </StarToRateContainer>
@@ -767,58 +778,72 @@ const AccommodationDetail = () => {
                         <RecentPost>
                           <RecentMain>
                             <RecentImageContainer>
-                              <RecentImage src={require("../../assets/img/feature-properties/fp-1.jpg").default}></RecentImage>
+                              <RecentImage
+                                src={
+                                  require("../../assets/img/feature-properties/fp-1.jpg")
+                                    .default
+                                }
+                              ></RecentImage>
                             </RecentImageContainer>
                             <RecentInfoContainer>
                               <RecentName>Nhà còn 2 phòng</RecentName>
                               <RecentPrice>100 triệu/tháng</RecentPrice>
                             </RecentInfoContainer>
-                            
-                              <TimeText>2 phút trước</TimeText>
-                            
+
+                            <TimeText>2 phút trước</TimeText>
                           </RecentMain>
 
                           <RecentMain>
                             <RecentImageContainer>
-                              <RecentImage src={require("../../assets/img/feature-properties/fp-2.jpg").default}></RecentImage>
+                              <RecentImage
+                                src={
+                                  require("../../assets/img/feature-properties/fp-2.jpg")
+                                    .default
+                                }
+                              ></RecentImage>
                             </RecentImageContainer>
                             <RecentInfoContainer>
                               <RecentName>Nhà còn 2 phòng</RecentName>
                               <RecentPrice>100 triệu/tháng</RecentPrice>
                             </RecentInfoContainer>
-                            
-                              <TimeText>2 phút trước</TimeText>
-                            
+
+                            <TimeText>2 phút trước</TimeText>
                           </RecentMain>
 
                           <RecentMain>
                             <RecentImageContainer>
-                              <RecentImage src={require("../../assets/img/feature-properties/fp-3.jpg").default}></RecentImage>
+                              <RecentImage
+                                src={
+                                  require("../../assets/img/feature-properties/fp-3.jpg")
+                                    .default
+                                }
+                              ></RecentImage>
                             </RecentImageContainer>
                             <RecentInfoContainer>
                               <RecentName>Nhà còn 2 phòng</RecentName>
                               <RecentPrice>100 triệu/tháng</RecentPrice>
                             </RecentInfoContainer>
-                            
-                              <TimeText>2 phút trước</TimeText>
-                            
+
+                            <TimeText>2 phút trước</TimeText>
                           </RecentMain>
                         </RecentPost>
-                        
                       </SideBarContentContainer>
                     </SideBarContentSection>
                   </NewAccommod>
                   <NewAccommod>
-                  <SideBarHeadingSection>
+                    <SideBarHeadingSection>
                       <HeadingText>Đặc biệt hôm nay</HeadingText>
                     </SideBarHeadingSection>
                     <SideBarContentSection>
                       <SideBarContentContainer>
-                        <Banner src={require("../../assets/img/single-accommod/banner.jpg").default}></Banner>
+                        <Banner
+                          src={
+                            require("../../assets/img/single-accommod/banner.jpg")
+                              .default
+                          }
+                        ></Banner>
                       </SideBarContentContainer>
-
                     </SideBarContentSection>
-
                   </NewAccommod>
                 </SideBar>
               </AccommodDetailRightColWrap>

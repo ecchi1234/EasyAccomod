@@ -49,6 +49,10 @@ export const InformationCardTitle = styled.h5`
   }
 `;
 
+// hết phần các commponent chung
+
+// bắt đầu style cho các component bao cho phần nội dung bên trong
+
 export const AccommodDetailScreen = styled.section`
   padding: 6rem 0 !important;
   background: #f7f7f7;
@@ -102,6 +106,11 @@ export const AccommodDetailLeftCol = styled.div`
     max-width: calc(100% / 1.5);
   }
 `;
+
+// hết style cho các component bao
+
+/** bắt đầu style cho các component của phần tiêu đề
+ */
 
 export const AccommodDetailHeadingSection = styled.section`
   padding: 60px 0 55px 0;
@@ -232,6 +241,8 @@ export const AccommodDetailLikeValue = styled.div`
 export const AccommodDetailSeeValue = styled.div`
   padding-left: 0.2rem;
 `;
+
+/** hết phần style cho các component là tiêu đề đầu tiên */
 
 export const AccommodDetailDesc = styled(InformationCard)`
   border-bottom: 0px;
@@ -469,26 +480,41 @@ export const StarToRateContainer = styled(Column)`
   }
 `;
 
+export const StarLabelIcon = styled(FaStar)`
+  font-size: 24px;
+  float: right;
+  letter-spacing: 4px;
+  color: #dadada;
+  
+  transition: 0.3s;
+
+  &:hover {
+    color: #ffc107;
+    cursor: pointer;
+  }
+`;
+
+export const StarLabel = styled.label`
+  
+`;
+
 export const InputRating = styled.input`
   display: none;
   width: auto;
   margin-right: 5px;
   box-sizing: border-box;
   padding: 0;
-`;
-
-export const StarLabel = styled(FaStar)`
-  font-size: 24px;
-  float: right;
-  letter-spacing: 4px;
-  color: #dadada;
-  cursor: pointer;
-  transition: 0.3s;
-
-  &:hover {
+  &:not(:checked) ~ ${StarLabel}:hover, &:not(:checked) ~  ${StarLabel}:hover ~ ${StarLabel} ${StarLabelIcon}{
+    color: #ffc107;
+    cursor: pointer;
+  } 
+  &:checked ~ ${StarLabel} ${StarLabelIcon} {
     color: #ffc107;
   }
 `;
+
+
+
 
 export const ReviewFormContainer = styled(Column)`
   @media screen and (min-width: 768px) {
@@ -553,7 +579,6 @@ export const TextArea = styled.textarea`
   overflow: auto;
   margin: 0;
 `;
-
 export const SubmitButton = styled.button`
   background: #274abb;
   cursor: pointer;
