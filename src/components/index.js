@@ -6,3 +6,5 @@ export {default as WelcomeSection } from './WelcomeSection/WelcomeSection';
 export {default as ListProperties} from './ListProperties/ListProperties';
 export {default as PlaceSection} from './PlaceSection/PlaceSection';
 export {default as CustomerSection} from './CustomerSection/CustomerSection';
+
+export {default as LeftMenu} from "./LeftMenu/LeftMenu";
