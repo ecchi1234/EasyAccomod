@@ -2,7 +2,13 @@ import styled from "styled-components";
 
 import { Link } from "react-router-dom";
 
-import { FaStar, FaStarHalfAlt, FaRegStar, FaTrashAlt } from "react-icons/fa";
+import {
+  FaStar,
+  FaStarHalfAlt,
+  FaRegStar,
+  FaTrashAlt,
+  FaEdit,
+} from "react-icons/fa";
 
 export const TableResponsive = styled.table`
   width: 100%;
@@ -26,6 +32,19 @@ export const TableHeadingCell = styled.th`
   &:last-child {
     padding-right: 5px;
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: 15px;
+    padding-left: 1rem;
+  }
+`;
+
+export const TableRow = styled.tr`
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 
 export const TableColumn = styled.td`
@@ -34,10 +53,22 @@ export const TableColumn = styled.td`
   padding: 30px 20px 30px 0;
   vertical-align: middle;
   font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  font-weight: 400;
+  @media screen and (max-width: 768px) {
+    padding-bottom: 15px;
+    padding-top: 0;
+    /* border-bottom-color: #fff; */
+  }
 `;
 
 export const FavoriteItemImageContainer = styled(TableColumn)`
-  width: 150px;
+  width: 125px;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin-top: 30px;
+  }
 `;
 
 export const LinkContainer = styled(Link)`
@@ -104,10 +135,22 @@ export const EmptyStarRatingIcon = styled(FaRegStar)`
 export const RatingItemNumberReview = styled(RatingItem)`
   margin-left: 1rem !important;
   color: #666;
+
+  @media screen and (max-width: 1199px) {
+    margin-left: 0 !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-left: 1rem !important;
+  }
 `;
 
 export const ActionColumn = styled(TableColumn)`
+  padding-right: 0 !important;
   text-align: right;
+  @media screen and (max-width: 768px) {
+    text-align: left;
+  }
 `;
 
 export const DeleteButton = styled.button`
@@ -119,4 +162,8 @@ export const DeleteButton = styled.button`
 `;
 export const DeleteIcon = styled(FaTrashAlt)`
   color: #f50057;
+`;
+export const EditIcon = styled(FaEdit)`
+  margin-left: 0.5rem;
+  color: #008000;
 `;

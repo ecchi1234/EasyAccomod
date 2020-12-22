@@ -13,6 +13,11 @@ import {
   LikeListIcon,
   ChangePasswordIcon,
   IconContainer,
+  SignOutIcon,
+  NotificationIcon,
+  ListHouseIcon,
+  AddHouseIcon,
+  EditHouseIcon,
 } from "./LeftMenu.elements";
 
 const LeftMenu = ({ active, route }) => {
@@ -30,7 +35,10 @@ const LeftMenu = ({ active, route }) => {
         <MenuItemContainerClearFix>
           <MenuItemList>
             <MenuItem>
-              <MenuItemLink active={route === "account" ? true : false} to="/services">
+              <MenuItemLink
+                active={route === "account" ? true : false}
+                to="/services"
+              >
                 <IconContainer>
                   <PersonIcon></PersonIcon>
                 </IconContainer>
@@ -39,20 +47,85 @@ const LeftMenu = ({ active, route }) => {
             </MenuItem>
 
             <MenuItem>
-              <MenuItemLink active={route === "favorite" ? true : false} to="/services/favorite-list">
+              <MenuItemLink
+                active={route === "favorite" ? true : false}
+                to="/services/favorite-list"
+              >
                 <IconContainer>
                   <LikeListIcon></LikeListIcon>
                 </IconContainer>
                 Danh sách yêu thích
               </MenuItemLink>
             </MenuItem>
+            <MenuItem>
+              <MenuItemLink
+                active={route === "list-house" ? true : false}
+                to="/services/list-house"
+              >
+                <IconContainer>
+                  <ListHouseIcon></ListHouseIcon>
+                </IconContainer>
+                Thống kê nhà trọ
+              </MenuItemLink>
+            </MenuItem>
 
             <MenuItem>
-              <MenuItemLink active={route === "change-password" ? true : false} to="/services/change-password">
+              <MenuItemLink
+                active={route === "edit-house" ? true : false}
+                to="/services/list-house"
+              >
+                <IconContainer>
+                  <EditHouseIcon></EditHouseIcon>
+                </IconContainer>
+                Chỉnh sửa nhà trọ
+              </MenuItemLink>
+            </MenuItem>
+
+            <MenuItem>
+              <MenuItemLink
+                active={route === "add-house" ? true : false}
+                to="/services/add-house"
+              >
+                <IconContainer>
+                  <AddHouseIcon></AddHouseIcon>
+                </IconContainer>
+                Thêm nhà trọ
+              </MenuItemLink>
+            </MenuItem>
+
+            <MenuItem>
+              <MenuItemLink
+                active={route === "change-password" ? true : false}
+                to="/services/change-password"
+              >
+                <IconContainer>
+                  <NotificationIcon></NotificationIcon>
+                </IconContainer>
+                Thông báo
+              </MenuItemLink>
+            </MenuItem>
+
+            <MenuItem>
+              <MenuItemLink
+                active={route === "change-password" ? true : false}
+                to="/services/change-password"
+              >
                 <IconContainer>
                   <ChangePasswordIcon></ChangePasswordIcon>
                 </IconContainer>
                 Đổi mật khẩu
+              </MenuItemLink>
+            </MenuItem>
+
+            <MenuItem>
+              <MenuItemLink
+                active={route === "change-password" ? true : false}
+                to="/services/change-password"
+              >
+                <IconContainer>
+                  <SignOutIcon></SignOutIcon>
+                </IconContainer>
+                Đăng xuất
               </MenuItemLink>
             </MenuItem>
           </MenuItemList>

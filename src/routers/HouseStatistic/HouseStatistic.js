@@ -5,11 +5,10 @@ import { Button } from "../../assets/style/globalStyle";
 import { LeftMenu } from "../../components";
 
 import {
-    AccommodationsPagination,
-    AccommodationsPaginationNavigation,
-    NavigationPageItem,
-  } from "../Accommodations/Accommodations.elements";
-  
+  AccommodationsPagination,
+  AccommodationsPaginationNavigation,
+  NavigationPageItem,
+} from "../Accommodations/Accommodations.elements";
 
 import {
   ProfileScreen,
@@ -41,10 +40,18 @@ import {
   TableResponsive,
   ActionColumn,
   EmptyStarRatingIcon,
-  TableRow
-} from "./FavouriteList.elements";
+  TableRow,
+  EditIcon,
+} from "../FavouriteList/FavouriteList.elements";
+import {
+  StatisticValue,
+  FavoriteCount,
+  WatchCount,
+  StatisticBox,
+  EachStatisticContainer,
+} from "./HouseStatistic.elements";
 
-const FavouriteList = () => {
+const HouseStatistic = () => {
   return (
     <>
       <ProfileScreen>
@@ -52,7 +59,7 @@ const FavouriteList = () => {
           <Row>
             <LeftMenuWrapper>
               <LeftMenuContainer>
-                <LeftMenu route="favorite"></LeftMenu>
+                <LeftMenu route="list-house"></LeftMenu>
               </LeftMenuContainer>
             </LeftMenuWrapper>
             <ContentSection>
@@ -61,10 +68,16 @@ const FavouriteList = () => {
                 <TableResponsive>
                   <thead>
                     <TableRow>
-                      <TableHeadingCell p="pl-2">Top nhà trọ</TableHeadingCell>
+                      <TableHeadingCell p="pl-2">Các bài đăng</TableHeadingCell>
                       <TableHeadingCell p="p-0"></TableHeadingCell>
+                      <TableHeadingCell>Lượt xem</TableHeadingCell>
+                      <TableHeadingCell>Lượt thích</TableHeadingCell>
+                      <TableHeadingCell>Truy cập nhiều</TableHeadingCell>
+                      <TableHeadingCell>Hành động</TableHeadingCell>
 
-                      <TableHeadingCell></TableHeadingCell>
+                      {/* <TableHeadingCell >
+                        Trạng thái
+                      </TableHeadingCell> */}
                     </TableRow>
                   </thead>
                   <tbody>
@@ -86,6 +99,7 @@ const FavouriteList = () => {
                         <FavoriteHouseLocation>
                           144 Xuân Thủy
                         </FavoriteHouseLocation>
+
                         <RatingBox>
                           <RatingItem>
                             <FullStarRatingIcon></FullStarRatingIcon>
@@ -107,13 +121,17 @@ const FavouriteList = () => {
                           </RatingItemNumberReview>
                         </RatingBox>
                       </TableColumn>
-                      <ActionColumn>
+                      <TableColumn>1000</TableColumn>
+                      <TableColumn>1000</TableColumn>
+                      <TableColumn>
+                        <p>22/12/2020</p>
+                      </TableColumn>
+                      <TableColumn>
                         <DeleteButton>
-                          <IconContext.Provider value={{ size: 20 }}>
-                            <DeleteIcon></DeleteIcon>
-                          </IconContext.Provider>
+                          Edit
+                          <EditIcon></EditIcon>
                         </DeleteButton>
-                      </ActionColumn>
+                      </TableColumn>
                     </TableRow>
 
                     <TableRow>
@@ -134,6 +152,7 @@ const FavouriteList = () => {
                         <FavoriteHouseLocation>
                           144 Xuân Thủy
                         </FavoriteHouseLocation>
+
                         <RatingBox>
                           <RatingItem>
                             <FullStarRatingIcon></FullStarRatingIcon>
@@ -155,13 +174,17 @@ const FavouriteList = () => {
                           </RatingItemNumberReview>
                         </RatingBox>
                       </TableColumn>
-                      <ActionColumn>
+                      <TableColumn>1000</TableColumn>
+                      <TableColumn>1000</TableColumn>
+                      <TableColumn>
+                        <p>22/12/2020</p>
+                      </TableColumn>
+                      <TableColumn>
                         <DeleteButton>
-                          <IconContext.Provider value={{ size: 20 }}>
-                            <DeleteIcon></DeleteIcon>
-                          </IconContext.Provider>
+                          Edit
+                          <EditIcon></EditIcon>
                         </DeleteButton>
-                      </ActionColumn>
+                      </TableColumn>
                     </TableRow>
 
                     <TableRow>
@@ -182,102 +205,7 @@ const FavouriteList = () => {
                         <FavoriteHouseLocation>
                           144 Xuân Thủy
                         </FavoriteHouseLocation>
-                        <RatingBox>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItemNumberReview>
-                            (6 đánh giá)
-                          </RatingItemNumberReview>
-                        </RatingBox>
-                      </TableColumn>
-                      <ActionColumn>
-                        <DeleteButton>
-                          <IconContext.Provider value={{ size: 20 }}>
-                            <DeleteIcon></DeleteIcon>
-                          </IconContext.Provider>
-                        </DeleteButton>
-                      </ActionColumn>
-                    </TableRow>
 
-                    <TableRow>
-                      <FavoriteItemImageContainer>
-                        <LinkContainer>
-                          <FavoriteHouseImage
-                            src={
-                              require("../../assets/img/feature-properties/fp-4.jpg")
-                                .default
-                            }
-                          ></FavoriteHouseImage>
-                        </LinkContainer>
-                      </FavoriteItemImageContainer>
-                      <TableColumn>
-                        <LinkContainer to="/product-detail">
-                          <FavoriteHouseName>Nhà trọ số 1</FavoriteHouseName>
-                        </LinkContainer>
-                        <FavoriteHouseLocation>
-                          144 Xuân Thủy
-                        </FavoriteHouseLocation>
-                        <RatingBox>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <EmptyStarRatingIcon></EmptyStarRatingIcon>
-                          </RatingItem>
-                          <RatingItemNumberReview>
-                            (6 đánh giá)
-                          </RatingItemNumberReview>
-                        </RatingBox>
-                      </TableColumn>
-                      <ActionColumn>
-                        <DeleteButton>
-                          <IconContext.Provider value={{ size: 20 }}>
-                            <DeleteIcon></DeleteIcon>
-                          </IconContext.Provider>
-                        </DeleteButton>
-                      </ActionColumn>
-                    </TableRow>
-
-                    <TableRow>
-                      <FavoriteItemImageContainer>
-                        <LinkContainer>
-                          <FavoriteHouseImage
-                            src={
-                              require("../../assets/img/feature-properties/fp-5.jpg")
-                                .default
-                            }
-                          ></FavoriteHouseImage>
-                        </LinkContainer>
-                      </FavoriteItemImageContainer>
-                      <TableColumn>
-                        <LinkContainer to="/product-detail">
-                          <FavoriteHouseName>Nhà trọ số 1</FavoriteHouseName>
-                        </LinkContainer>
-                        <FavoriteHouseLocation>
-                          144 Xuân Thủy
-                        </FavoriteHouseLocation>
                         <RatingBox>
                           <RatingItem>
                             <FullStarRatingIcon></FullStarRatingIcon>
@@ -299,38 +227,48 @@ const FavouriteList = () => {
                           </RatingItemNumberReview>
                         </RatingBox>
                       </TableColumn>
-                      <ActionColumn>
+                      <TableColumn>1000</TableColumn>
+                      <TableColumn>1000</TableColumn>
+                      <TableColumn>
+                        <p>22/12/2020</p>
+                      </TableColumn>
+                      <TableColumn>
                         <DeleteButton>
-                          <IconContext.Provider value={{ size: 20 }}>
-                            <DeleteIcon></DeleteIcon>
-                          </IconContext.Provider>
+                          Edit
+                          <EditIcon></EditIcon>
                         </DeleteButton>
-                      </ActionColumn>
+                      </TableColumn>
                     </TableRow>
                   </tbody>
                 </TableResponsive>
                 <AccommodationsPaginationNavigation>
-                <AccommodationsPagination>
-                  <li>
-                    <NavigationPageItem to="/" first>Prev</NavigationPageItem>
-                  </li>
-                  <li>
-                    <NavigationPageItem to="/" active>1</NavigationPageItem>
-                  </li>
-                  <li>
-                    <NavigationPageItem to="/">2</NavigationPageItem>
-                  </li>
-                  <li>
-                    <NavigationPageItem to="/">3</NavigationPageItem>
-                  </li>
-                  <li>
-                    <NavigationPageItem to="/">4</NavigationPageItem>
-                  </li>
-                  <li>
-                    <NavigationPageItem to="/" last>Next</NavigationPageItem>
-                  </li>
-                </AccommodationsPagination>
-              </AccommodationsPaginationNavigation>
+                  <AccommodationsPagination>
+                    <li>
+                      <NavigationPageItem to="/" first>
+                        Prev
+                      </NavigationPageItem>
+                    </li>
+                    <li>
+                      <NavigationPageItem to="/" active>
+                        1
+                      </NavigationPageItem>
+                    </li>
+                    <li>
+                      <NavigationPageItem to="/">2</NavigationPageItem>
+                    </li>
+                    <li>
+                      <NavigationPageItem to="/">3</NavigationPageItem>
+                    </li>
+                    <li>
+                      <NavigationPageItem to="/">4</NavigationPageItem>
+                    </li>
+                    <li>
+                      <NavigationPageItem to="/" last>
+                        Next
+                      </NavigationPageItem>
+                    </li>
+                  </AccommodationsPagination>
+                </AccommodationsPaginationNavigation>
               </InformationCard>
             </ContentSection>
           </Row>
@@ -340,4 +278,4 @@ const FavouriteList = () => {
   );
 };
 
-export default FavouriteList;
+export default HouseStatistic;

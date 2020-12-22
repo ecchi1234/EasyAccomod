@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 import { Link } from "react-router-dom";
 
-import { IoPersonSharp } from "react-icons/io5";
+import { IoPersonSharp,  } from "react-icons/io5";
 
-import { FaHeart, FaLock } from "react-icons/fa";
+import {RiAddCircleFill, RiListSettingsLine} from "react-icons/ri";
+
+import { FaHeart, FaLock, FaSignOutAlt, FaThList, FaBell } from "react-icons/fa";
 
 export const LeftMenuContainer = styled.div`
   box-shadow: 0 0 20px rgba(38, 38, 38, 0.2);
@@ -99,6 +101,16 @@ export const PersonIcon = styled(IoPersonSharp)``;
 export const LikeListIcon = styled(FaHeart)``;
 
 export const ChangePasswordIcon = styled(FaLock)``;
+
+export const SignOutIcon = styled(FaSignOutAlt)``;
+
+export const ListHouseIcon = styled(FaThList)``;
+
+export const NotificationIcon = styled(FaBell)``;
+
+export const AddHouseIcon = styled(RiAddCircleFill)``;
+
+export const EditHouseIcon = styled(RiListSettingsLine)``;
 
 export const MenuItemLink = styled(Link)`
   transition: all 0.3s ease;

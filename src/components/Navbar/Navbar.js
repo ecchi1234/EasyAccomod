@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
-import { Button } from '../../assets/style/globalStyle';
+import { Button } from "../../assets/style/globalStyle";
 import {
   Nav,
   NavbarContainer,
@@ -12,10 +12,10 @@ import {
   NavItem,
   NavLinks,
   NavItemBtn,
-  NavBtnLink
+  NavBtnLink,
 } from "./Navbar.elements";
 
-const Navbar = () => {
+const Navbar = ({ isLogged, isOwner }) => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -28,13 +28,13 @@ const Navbar = () => {
     } else {
       setButton(true);
     }
-  }
+  };
 
   useEffect(() => {
     showButton();
   }, []);
 
-  window.addEventListener('resize', showButton);
+  window.addEventListener("resize", showButton);
 
   return (
     <>
@@ -43,7 +43,7 @@ const Navbar = () => {
           <NavbarContainer>
             <NavLogo to="/" onClick={closeMobileMenu}>
               <NavIcon />
-              Easy <p style={{color: "#4b59f7", fontWeight: 600}}>Accomod</p>
+              Easy <p style={{ color: "#4b59f7", fontWeight: 600 }}>Accomod</p>
             </NavLogo>
             <MobileIcon onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
@@ -57,15 +57,47 @@ const Navbar = () => {
                 <NavLinks to="/products">Nhà trọ</NavLinks>
               </NavItem>
 
-              <NavItem>
-                <NavLinks to="/services">Về chúng tôi</NavLinks>
-              </NavItem>
+              
 
               <NavItem>
                 <NavLinks to="/products">Liên hệ</NavLinks>
               </NavItem>
 
-              <NavItemBtn>
+              {isLogged ? (
+                <NavItem>
+                  <NavLinks to="/services">Xin chào, Chi</NavLinks>
+                </NavItem>
+              ) : (
+                <NavItemBtn>
+                  {button ? (
+                    <NavBtnLink to="/sign-up">
+                      <Button primary>SIGN UP</Button>
+                    </NavBtnLink>
+                  ) : (
+                    <NavBtnLink to="/sign-up">
+                      <Button fontBig primary>
+                        Signup
+                      </Button>
+                    </NavBtnLink>
+                  )}
+                </NavItemBtn>
+              )}
+
+              {isOwner ? (<NavItemBtn>
+                  {button ? (
+                    <NavBtnLink to="/sign-up">
+                      <Button primary>THÊM POST</Button>
+                    </NavBtnLink>
+                  ) : (
+                    <NavBtnLink to="/sign-up">
+                      <Button fontBig primary>
+                        Thêm post
+                      </Button>
+                    </NavBtnLink>
+                  )}
+                </NavItemBtn>) : null}
+
+              {/* <NavItemBtn>
                 {button ? (
                   <NavBtnLink to="/sign-up">
                     <Button primary>SIGN UP</Button>
@@ -77,7 +109,7 @@ const Navbar = () => {
                     </Button>
                   </NavBtnLink>
                 )}
-              </NavItemBtn>
+              </NavItemBtn> */}
             </NavMenu>
           </NavbarContainer>
         </Nav>
