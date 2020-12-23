@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Button} from "../../assets/style/globalStyle";
+import { Button } from "../../assets/style/globalStyle";
 
 import { LeftMenu } from "../../components";
 
@@ -9,12 +9,21 @@ import {
   ProfileWrapper,
   LeftMenuWrapper,
   ContentSection,
-  LeftMenuContainer
+  LeftMenuContainer,
 } from "../Profile/Profile.elements";
 
-import { SignUpForm, SignUpFormGroup, FormLabel, FormTextInput} from "../SignUp/SignUp.elements";
+import {
+  SignUpForm,
+  SignUpFormGroup,
+  FormLabel,
+  FormTextInput,
+} from "../SignUp/SignUp.elements";
 
-import { Row, InformationCard, InformationCardTitle} from "../AccommodationDetail/AccommodationDetail.elements";
+import {
+  Row,
+  InformationCard,
+  InformationCardTitle,
+} from "../AccommodationDetail/AccommodationDetail.elements";
 
 const Profile = () => {
   return (
@@ -23,48 +32,47 @@ const Profile = () => {
         <ProfileWrapper>
           <Row>
             <LeftMenuWrapper>
-                <LeftMenuContainer>
-                    <LeftMenu route="account"></LeftMenu>
-                </LeftMenuContainer>
-              
+              <LeftMenuContainer>
+                <LeftMenu route="account"></LeftMenu>
+              </LeftMenuContainer>
             </LeftMenuWrapper>
             <ContentSection>
-                <InformationCard>
-                    <InformationCardTitle>Tài khoản của tôi</InformationCardTitle>
-                    <SignUpForm>
-                        <SignUpFormGroup>
-                            <FormLabel>Tên</FormLabel>
-                            <FormTextInput></FormTextInput>
-                        </SignUpFormGroup>
+              <InformationCard>
+                <InformationCardTitle>Tài khoản của tôi</InformationCardTitle>
+                <SignUpForm>
+                  <SignUpFormGroup>
+                    <FormLabel>Tên</FormLabel>
+                    <FormTextInput></FormTextInput>
+                  </SignUpFormGroup>
 
-                        <SignUpFormGroup>
-                            <FormLabel>Họ</FormLabel>
-                            <FormTextInput></FormTextInput>
-                        </SignUpFormGroup>
+                  <SignUpFormGroup>
+                    <FormLabel>Họ</FormLabel>
+                    <FormTextInput></FormTextInput>
+                  </SignUpFormGroup>
 
-                        <SignUpFormGroup>
-                            <FormLabel>Email</FormLabel>
-                            <FormTextInput></FormTextInput>
-                        </SignUpFormGroup>
+                  <SignUpFormGroup>
+                    <FormLabel>Email</FormLabel>
+                    <FormTextInput></FormTextInput>
+                  </SignUpFormGroup>
 
-                        <SignUpFormGroup>
-                            <FormLabel>Số điện thoại</FormLabel>
-                            <FormTextInput></FormTextInput>
-                        </SignUpFormGroup>
+                  <SignUpFormGroup>
+                    <FormLabel>Số điện thoại</FormLabel>
+                    <FormTextInput></FormTextInput>
+                  </SignUpFormGroup>
 
-                        <SignUpFormGroup>
-                            <FormLabel>Địa chỉ thường trú</FormLabel>
-                            <FormTextInput></FormTextInput>
-                        </SignUpFormGroup>
+                  <SignUpFormGroup>
+                    <FormLabel>Địa chỉ thường trú</FormLabel>
+                    <FormTextInput></FormTextInput>
+                  </SignUpFormGroup>
 
-                        <SignUpFormGroup>
-                            <FormLabel>Số căn cước công dân</FormLabel>
-                            <FormTextInput></FormTextInput>
-                        </SignUpFormGroup>
+                  <SignUpFormGroup>
+                    <FormLabel>Số căn cước công dân</FormLabel>
+                    <FormTextInput></FormTextInput>
+                  </SignUpFormGroup>
 
-                        <Button>Chỉnh sửa thông tin</Button>
-                    </SignUpForm>
-                </InformationCard>
+                  <Button>Chỉnh sửa thông tin</Button>
+                </SignUpForm>
+              </InformationCard>
             </ContentSection>
           </Row>
         </ProfileWrapper>

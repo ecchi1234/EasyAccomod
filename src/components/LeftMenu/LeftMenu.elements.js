@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import { IoPersonSharp,  } from "react-icons/io5";
 
+import {BsChatFill} from "react-icons/bs";
+
 import {RiAddCircleFill, RiListSettingsLine} from "react-icons/ri";
 
 import { FaHeart, FaLock, FaSignOutAlt, FaThList, FaBell } from "react-icons/fa";
@@ -111,6 +113,8 @@ export const NotificationIcon = styled(FaBell)``;
 export const AddHouseIcon = styled(RiAddCircleFill)``;
 
 export const EditHouseIcon = styled(RiListSettingsLine)``;
+
+export const ChatIcon = styled(BsChatFill)``;
 
 export const MenuItemLink = styled(Link)`
   transition: all 0.3s ease;

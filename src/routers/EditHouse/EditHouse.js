@@ -3,7 +3,9 @@ import { IconContext } from "react-icons/lib";
 
 import { Button } from "../../assets/style/globalStyle";
 import { LeftMenu } from "../../components";
+import {Link} from "react-router-dom";
 
+import ExtendTimeSection from "../../components/ExtendTimeSection/ExtendTimeSection";
 import {
   AccommodationsPagination,
   AccommodationsPaginationNavigation,
@@ -49,9 +51,11 @@ import {
   WatchCount,
   StatisticBox,
   EachStatisticContainer,
-} from "./HouseStatistic.elements";
+} from "../HouseStatistic/HouseStatistic.elements";
+import { EditButton, EditStatusIcon, StatusValue, ExtendButton } from "./EditHouse.elements";
 
-const HouseStatistic = () => {
+const EditHouse = () => {
+  const [isExtend, setExtend] = React.useState(false);
   return (
     <>
       <ProfileScreen>
@@ -59,25 +63,23 @@ const HouseStatistic = () => {
           <Row>
             <LeftMenuWrapper>
               <LeftMenuContainer>
-                <LeftMenu route="list-house"></LeftMenu>
+                <LeftMenu route="edit-house"></LeftMenu>
               </LeftMenuContainer>
             </LeftMenuWrapper>
             <ContentSection>
               <InformationCard>
-                <InformationCardTitle>Danh sách</InformationCardTitle>
+                {isExtend ? (<ExtendTimeSection/>) : (<><InformationCardTitle>Danh sách</InformationCardTitle>
                 <TableResponsive>
                   <thead>
                     <TableRow>
                       <TableHeadingCell p="pl-2">Các bài đăng</TableHeadingCell>
                       <TableHeadingCell p="p-0"></TableHeadingCell>
-                      <TableHeadingCell>Lượt xem</TableHeadingCell>
-                      <TableHeadingCell>Lượt thích</TableHeadingCell>
-                      <TableHeadingCell>Truy cập nhiều</TableHeadingCell>
                       
+                      <TableHeadingCell>Trạng thái</TableHeadingCell>
+                      
+                      <TableHeadingCell>Hành động</TableHeadingCell>
 
-                      {/* <TableHeadingCell >
-                        Trạng thái
-                      </TableHeadingCell> */}
+                      
                     </TableRow>
                   </thead>
                   <tbody>
@@ -121,12 +123,18 @@ const HouseStatistic = () => {
                           </RatingItemNumberReview>
                         </RatingBox>
                       </TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>1000</TableColumn>
+                      
                       <TableColumn>
-                        <p>22/12/2020</p>
+                        <DeleteButton>
+                          <StatusValue isRented={false}>Chưa thuê</StatusValue>
+                          <EditStatusIcon></EditStatusIcon>
+                        </DeleteButton>
                       </TableColumn>
                       
+                      <TableColumn>
+                        <EditButton>Chỉnh sửa</EditButton>
+                        <ExtendButton>Gia hạn</ExtendButton>
+                      </TableColumn>
                     </TableRow>
 
                     <TableRow>
@@ -169,12 +177,18 @@ const HouseStatistic = () => {
                           </RatingItemNumberReview>
                         </RatingBox>
                       </TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>
-                        <p>22/12/2020</p>
-                      </TableColumn>
                       
+                      <TableColumn>
+                        <DeleteButton>
+                          <StatusValue isRented={true}>Đã thuê</StatusValue>
+                          <EditStatusIcon></EditStatusIcon>
+                        </DeleteButton>
+                      </TableColumn>
+                     
+                      <TableColumn>
+                        <EditButton>Chỉnh sửa</EditButton>
+                        <Link><ExtendButton onClick={() => {setExtend(true)}}>Gia hạn</ExtendButton></Link>
+                      </TableColumn>
                     </TableRow>
 
                     <TableRow>
@@ -217,22 +231,25 @@ const HouseStatistic = () => {
                           </RatingItemNumberReview>
                         </RatingBox>
                       </TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>
-                        <p>22/12/2020</p>
-                      </TableColumn>
                       
+                      <TableColumn>
+                        <DeleteButton>
+                          <StatusValue isRented={false}>Chưa thuê</StatusValue>
+                          <EditStatusIcon></EditStatusIcon>
+                        </DeleteButton>
+                      </TableColumn>
+                    
+                      <TableColumn>
+                        <EditButton>Chỉnh sửa</EditButton>
+                        <Link><ExtendButton onClick={() => {setExtend(true)}}>Gia hạn</ExtendButton></Link>
+                      </TableColumn>
                     </TableRow>
 
                     <TableRow>
                       <FavoriteItemImageContainer>
                         <LinkContainer>
                           <FavoriteHouseImage
-                            src={
-                              require("../../assets/img/raw-2.jpg")
-                                .default
-                            }
+                            src={require("../../assets/img/raw-2.jpg").default}
                           ></FavoriteHouseImage>
                         </LinkContainer>
                       </FavoriteItemImageContainer>
@@ -265,12 +282,18 @@ const HouseStatistic = () => {
                           </RatingItemNumberReview>
                         </RatingBox>
                       </TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>
-                        <p>22/12/2020</p>
-                      </TableColumn>
                       
+                      <TableColumn>
+                        <DeleteButton>
+                          <StatusValue isRented={true}>Đã thuê</StatusValue>
+                          <EditStatusIcon></EditStatusIcon>
+                        </DeleteButton>
+                      </TableColumn>
+                  
+                      <TableColumn>
+                        <EditButton>Chỉnh sửa</EditButton>
+                        <Link><ExtendButton onClick={() => {setExtend(true)}}>Gia hạn</ExtendButton></Link>
+                      </TableColumn>
                     </TableRow>
                   </tbody>
                 </TableResponsive>
@@ -302,6 +325,9 @@ const HouseStatistic = () => {
                     </li>
                   </AccommodationsPagination>
                 </AccommodationsPaginationNavigation>
+                </>)}
+
+               
               </InformationCard>
             </ContentSection>
           </Row>
@@ -311,4 +337,4 @@ const HouseStatistic = () => {
   );
 };
 
-export default HouseStatistic;
+export default EditHouse;

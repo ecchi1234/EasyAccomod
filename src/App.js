@@ -14,22 +14,29 @@ import FavouriteList from "./routers/FavouriteList/FavouriteList";
 import ChangePassword from "./routers/ChangePassword/ChangePassword";
 import AddHouse from "./routers/AddHouse/AddHouse";
 import HouseStatistic from "./routers/HouseStatistic/HouseStatistic";
+import EditHouse from "./routers/EditHouse/EditHouse";
+import Notification from "./routers/Notification/Notification";
+import Chat from "./routers/Chat/Chat";
 
 function App() {
   return (
     <Router>
       <GlobalStyle />
       <ScrollToTop/>
-      <Navbar isLogged={true} isOwner={true}/>
+      <Navbar isLogged={true} isOwner={false}/>
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/products" exact component={Accommodations} />
         <Route path="/product-detail" exact component={AccommodationDetail} />
-        <Route path="/services" exact component={Profile} />
-        <Route path="/services/favorite-list" exact component={FavouriteList} />
-        <Route path="/services/change-password" exact component={ChangePassword} />
-        <Route path="/services/add-house" exact component={AddHouse} />
-        <Route path="/services/list-house" exact component={HouseStatistic} />
+        <Route path="/profile" exact component={Profile} />
+        <Route path="/profile/favorite-list" exact component={FavouriteList} />
+        <Route path="/profile/change-password" exact component={ChangePassword} />
+        <Route path="/add-house" exact component={AddHouse} />
+        <Route path="/profile/list-house" exact component={HouseStatistic} />
+        <Route path="/profile/edit-house" exact component={EditHouse} />
+        <Route path="/profile/notification" exact component={Notification} />
+        <Route path="/profile/chat" exact component={Chat} />
+
         <Route path="/sign-up" exact component={SignUp} />
         <Route path="/login" exact component={Login} />
       </Switch>

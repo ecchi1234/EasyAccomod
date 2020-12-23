@@ -9,7 +9,7 @@ export const homeObjOne = {
   description:
     "Chúng tôi là nơi cung cấp cho bạn thông tin về những nhà trọ tốt nhất và là nơi bạn có thể đăng tin về nhà trọ của mình.",
   headline: "Tìm căn nhà trọ mong ước của bạn",
-  topLine: "Margeting Agency",
+  topLine: "Easy Accommodation Agency",
   start: '',
   img: require('../../assets/img/svg-4.svg').default,
   alt: "Image",
@@ -27,7 +27,7 @@ export const homeObjTwo = {
     description:
       "We have business owners increase their revenue. Our team of unique specialist can help you acheive your business goals.",
     headline: "Những căn nhà trọ tốt nhất",
-    topLine: "Margeting Agency",
+    topLine: "Easy Accommodation Agency",
     start: 'true',
     img: require('../../assets/img/info-1.jpg').default,
     alt: "Image",

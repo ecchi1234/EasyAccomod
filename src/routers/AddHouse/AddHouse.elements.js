@@ -208,7 +208,7 @@ export const NearbyList = styled.ul`
 `;
 
 export const NearbyListItem = styled.li`
-/* border: 1px solid #ddd; */
+  /* border: 1px solid #ddd; */
   height: 50px;
   padding: 10px;
   padding-left: 0px;
@@ -216,6 +216,5 @@ export const NearbyListItem = styled.li`
 `;
 
 export const AddNearbyButtonContainer = styled.div`
-margin-top: 5px;
-
+  margin-top: 5px;
 `;

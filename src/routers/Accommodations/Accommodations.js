@@ -416,23 +416,7 @@ const Accommodations = () => {
                         <AccommodationsFilterLabelInput>
                           Địa điểm ở gần
                         </AccommodationsFilterLabelInput>
-                        <AccommodationsFilterSelect>
-                          <AccommodationsSelectOption value={0}>
-                            Địa điểm
-                          </AccommodationsSelectOption>
-                          <AccommodationsSelectOption value={1}>
-                            Trường đại học
-                          </AccommodationsSelectOption>
-                          <AccommodationsSelectOption value={2}>
-                            Bệnh viện
-                          </AccommodationsSelectOption>
-                          <AccommodationsSelectOption value={3}>
-                            Siêu thị
-                          </AccommodationsSelectOption>
-                          <AccommodationsSelectOption value={4}>
-                            Chợ
-                          </AccommodationsSelectOption>
-                        </AccommodationsFilterSelect>
+                        <AccommodationsFilterInput></AccommodationsFilterInput>
                       </AccommodationsFilterInputGroup>
 
                       <AccommodationsFilterButton>

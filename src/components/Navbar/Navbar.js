@@ -65,7 +65,7 @@ const Navbar = ({ isLogged, isOwner }) => {
 
               {isLogged ? (
                 <NavItem>
-                  <NavLinks to="/services">Xin chào, Chi</NavLinks>
+                  <NavLinks to="/profile">Xin chào, Chi</NavLinks>
                 </NavItem>
               ) : (
                 <NavItemBtn>
@@ -85,11 +85,11 @@ const Navbar = ({ isLogged, isOwner }) => {
 
               {isOwner ? (<NavItemBtn>
                   {button ? (
-                    <NavBtnLink to="/sign-up">
+                    <NavBtnLink to="/add-house">
                       <Button primary>THÊM POST</Button>
                     </NavBtnLink>
                   ) : (
-                    <NavBtnLink to="/sign-up">
+                    <NavBtnLink to="/add-house">
                       <Button fontBig primary>
                         Thêm post
                       </Button>

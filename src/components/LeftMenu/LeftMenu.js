@@ -18,9 +18,11 @@ import {
   ListHouseIcon,
   AddHouseIcon,
   EditHouseIcon,
+  ChatIcon
 } from "./LeftMenu.elements";
 
 const LeftMenu = ({ active, route }) => {
+  
   return (
     <>
       <LeftMenuContainer>
@@ -37,7 +39,7 @@ const LeftMenu = ({ active, route }) => {
             <MenuItem>
               <MenuItemLink
                 active={route === "account" ? true : false}
-                to="/services"
+                to={`/profile`}
               >
                 <IconContainer>
                   <PersonIcon></PersonIcon>
@@ -49,7 +51,7 @@ const LeftMenu = ({ active, route }) => {
             <MenuItem>
               <MenuItemLink
                 active={route === "favorite" ? true : false}
-                to="/services/favorite-list"
+                to={`/profile/favorite-list`}
               >
                 <IconContainer>
                   <LikeListIcon></LikeListIcon>
@@ -60,7 +62,7 @@ const LeftMenu = ({ active, route }) => {
             <MenuItem>
               <MenuItemLink
                 active={route === "list-house" ? true : false}
-                to="/services/list-house"
+                to={`/profile/list-house`}
               >
                 <IconContainer>
                   <ListHouseIcon></ListHouseIcon>
@@ -72,7 +74,7 @@ const LeftMenu = ({ active, route }) => {
             <MenuItem>
               <MenuItemLink
                 active={route === "edit-house" ? true : false}
-                to="/services/list-house"
+                to={`/profile/edit-house`}
               >
                 <IconContainer>
                   <EditHouseIcon></EditHouseIcon>
@@ -84,7 +86,7 @@ const LeftMenu = ({ active, route }) => {
             <MenuItem>
               <MenuItemLink
                 active={route === "add-house" ? true : false}
-                to="/services/add-house"
+                to={`/add-house`}
               >
                 <IconContainer>
                   <AddHouseIcon></AddHouseIcon>
@@ -95,8 +97,8 @@ const LeftMenu = ({ active, route }) => {
 
             <MenuItem>
               <MenuItemLink
-                active={route === "change-password" ? true : false}
-                to="/services/change-password"
+                active={route === "notification" ? true : false}
+                to={`/profile/notification`}
               >
                 <IconContainer>
                   <NotificationIcon></NotificationIcon>
@@ -107,8 +109,20 @@ const LeftMenu = ({ active, route }) => {
 
             <MenuItem>
               <MenuItemLink
+                active={route === "chat" ? true : false}
+                to={`/profile/chat`}
+              >
+                <IconContainer>
+                  <ChatIcon></ChatIcon>
+                </IconContainer>
+                Chat
+              </MenuItemLink>
+            </MenuItem>
+
+            <MenuItem>
+              <MenuItemLink
                 active={route === "change-password" ? true : false}
-                to="/services/change-password"
+                to={`/profile/change-password`}
               >
                 <IconContainer>
                   <ChangePasswordIcon></ChangePasswordIcon>
@@ -119,8 +133,8 @@ const LeftMenu = ({ active, route }) => {
 
             <MenuItem>
               <MenuItemLink
-                active={route === "change-password" ? true : false}
-                to="/services/change-password"
+                active={route === "log-out" ? true : false}
+                to={`/profile/change-password`}
               >
                 <IconContainer>
                   <SignOutIcon></SignOutIcon>
