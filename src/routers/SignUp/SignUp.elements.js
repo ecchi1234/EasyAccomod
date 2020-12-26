@@ -47,7 +47,7 @@ export const FormTextInput = styled.input`
   margin: 0;
 `;
 
-export const SubmitButton = styled.button`
+export const SubmitButton = styled.input`
   display: block;
   width: 100%;
   text-decoration: none;
@@ -80,4 +80,8 @@ export const LinkToLoginPage = styled(Link)`
   &:hover {
     color: #014c8c;
   }
+`;
+
+export const ErrorNotification = styled.span`
+color: red;
 `;

@@ -107,7 +107,7 @@ const LeftMenu = ({ active, route }) => {
               </MenuItemLink>
             </MenuItem>
 
-            <MenuItem>
+            {/* <MenuItem>
               <MenuItemLink
                 active={route === "chat" ? true : false}
                 to={`/profile/chat`}
@@ -117,7 +117,7 @@ const LeftMenu = ({ active, route }) => {
                 </IconContainer>
                 Chat
               </MenuItemLink>
-            </MenuItem>
+            </MenuItem> */}
 
             <MenuItem>
               <MenuItemLink

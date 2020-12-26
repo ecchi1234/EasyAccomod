@@ -140,7 +140,7 @@ const Accommodations = () => {
                     {listAccommod.map((e, index) => {
                       return (
                         <AccommodationsItemCol key={index}>
-                          <PricingCard to="/product-detail">
+                          <PricingCard to={`/product-detail/${index}`}>
                             <PricingCardImageHeading
                               src={
                                 require(`../../assets/img/feature-properties/fp-${
@@ -150,7 +150,7 @@ const Accommodations = () => {
                             ></PricingCardImageHeading>
                             <PricingCardInfo>
                               <PricingCardInfoWrapper>
-                                <PricingCardInfoTitle to="/product-detail">
+                                <PricingCardInfoTitle to={`/product-detail/${index}`}>
                                   {e.title}
                                 </PricingCardInfoTitle>
                                 <PricingCardInfoSubTitle>

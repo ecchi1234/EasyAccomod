@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
+
+import axios from "axios";
 
 import { Button } from "../../assets/style/globalStyle";
 
@@ -17,6 +19,7 @@ import {
   SignUpFormGroup,
   FormLabel,
   FormTextInput,
+  ErrorNotification,
 } from "../SignUp/SignUp.elements";
 
 import {
@@ -25,7 +28,8 @@ import {
   InformationCardTitle,
 } from "../AccommodationDetail/AccommodationDetail.elements";
 
-const Profile = () => {
+const Profile = (props) => {
+  
   return (
     <>
       <ProfileScreen>
@@ -43,6 +47,7 @@ const Profile = () => {
                   <SignUpFormGroup>
                     <FormLabel>Tên</FormLabel>
                     <FormTextInput></FormTextInput>
+                    
                   </SignUpFormGroup>
 
                   <SignUpFormGroup>

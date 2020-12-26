@@ -14,6 +14,7 @@ import {
   Row,
   Column,
 } from "../AccommodationDetail/AccommodationDetail.elements";
+
 import {
   AddHouseFormGroup,
   AddHouseSection,
@@ -91,7 +92,7 @@ const AddHouse = () => {
                     <AddHouseSectionTitle>Mô tả nhà trọ</AddHouseSectionTitle>
                     <AddHouseFormGroup>
                       <form>
-                        <Row>
+                        {/* <Row>
                           <Column>
                             <FormContainer>
                               <FormLabel>Tiêu đề</FormLabel>
@@ -103,9 +104,9 @@ const AddHouse = () => {
                               ></TextInput>
                             </FormContainer>
                           </Column>
-                        </Row>
+                        </Row> */}
 
-                        <Row>
+                        {/* <Row>
                           <Column>
                             <FormContainer>
                               <FormLabel>Mô tả</FormLabel>
@@ -116,7 +117,7 @@ const AddHouse = () => {
                               ></TextAreaInput>
                             </FormContainer>
                           </Column>
-                        </Row>
+                        </Row> */}
                         <Row>
                           <SelectionContainer>
                             <SelectionGroup>
@@ -381,15 +382,31 @@ const AddHouse = () => {
                             </SelectionGroup>
                           </SelectionContainerOneColumn>
 
-                          <SelectionContainerOneColumn>
+                          <SelectionContainer>
                             <SelectionGroup>
-                              <FormLabel>Điện nước</FormLabel>
-                              <SelectionInput>
-                                <option>Giá dân</option>
-                                <option>Giá thuê</option>
-                              </SelectionInput>
+                              <FormLabel>Giá điện</FormLabel>
+                              <TextInput
+                                type="text"
+                                name="title"
+                                id="title"
+                                placeholder="Tỉnh hoặc thành phố"
+                                required
+                              ></TextInput>
                             </SelectionGroup>
-                          </SelectionContainerOneColumn>
+                          </SelectionContainer>
+
+                          <SelectionContainer>
+                            <SelectionGroup>
+                              <FormLabel>Giá nước</FormLabel>
+                              <TextInput
+                                type="text"
+                                name="title"
+                                id="title"
+                                placeholder="Tỉnh hoặc thành phố"
+                                required
+                              ></TextInput>
+                            </SelectionGroup>
+                          </SelectionContainer>
 
                           <SelectionContainer>
                             <SelectionGroup>
