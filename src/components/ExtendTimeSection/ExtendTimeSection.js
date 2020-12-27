@@ -19,6 +19,7 @@ const ExtendTimeSection = ({ postExtend, goBack }) => {
   const [extendTime, setExtendTime] = React.useState(0);
   const [isSubmit, setIsSubmit] = React.useState(false);
   const [price, setPrice] = React.useState(0);
+  const moneyRef = React.useRef();
   const handleExtendTimeRequest = () => {
     axios("https://localhost:5000/api/RequestExtend/request", {
       method: "POST",
@@ -51,7 +52,7 @@ const ExtendTimeSection = ({ postExtend, goBack }) => {
             <br></br>
           </>
         ) : (
-          <br>
+          <>
             <SignUpFormGroup>
               <FormLabel>Thời gian hiển thị thêm </FormLabel>
               <FormTextInput
@@ -71,7 +72,7 @@ const ExtendTimeSection = ({ postExtend, goBack }) => {
                 <option>Năm</option>
               </SelectionInput>
             </SignUpFormGroup>
-          </br>
+          </>
         )}
 
         <TotalCost>Tổng tiền: </TotalCost>
@@ -87,7 +88,7 @@ const ExtendTimeSection = ({ postExtend, goBack }) => {
             }
           }}
         >
-          {isSubmit ? "Quay ve" : "Cap nhat"}
+          {isSubmit ? "Quay về" : "Cập nhật"}
         </Button>
       </div>
     </>

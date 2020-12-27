@@ -16,7 +16,8 @@ export const EditButton = styled.button`
   color: #fff;
   padding: 10px;
   border-radius: 5px;
-  background-color: #18ba60;
+  background-color: ${({ canEdit }) => (canEdit ? "green" : "#ccc")};
+  
   border: none;
   margin-right: 5px;
   &:hover {

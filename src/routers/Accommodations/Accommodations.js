@@ -72,7 +72,7 @@ import { PricingCard } from "./Accommodations.elements";
 const Accommodations = () => {
   const handleGetAllPost = () => {
     axios
-      .get("https://localhost:5000/api/Post/getall")
+      .get("https://localhost:5000/api/Post/getall", { withCredentials: true })
       .then((res) => {
         setLoading(false);
         setListAccommod(res.data);
@@ -89,6 +89,7 @@ const Accommodations = () => {
   const handleSearch = () => {
     setLoading(true);
     axios({
+      method: "POST",
       url: "https://localhost:5000/api/Post/search",
       withCredentials: true,
       data: {
@@ -103,9 +104,9 @@ const Accommodations = () => {
         waterHeater: waterHeater,
         bath: bath,
         withOwner: withOwner,
-        kitchen: kitchen,
-        maxPrice: maxPrice,
-        minPrice: minPrice,
+        kitchen: parseInt(kitchen),
+        maxPrice: parseFloat(maxPrice),
+        minPrice: parseFloat(minPrice),
       },
     })
       .then((res) => {
@@ -182,105 +183,111 @@ const Accommodations = () => {
                     "Loading..."
                   ) : (
                     <AccommodationsList>
-                      
-                      {listAccommod.length === 0 ?<div>Không tìm thấy phòng trọ phù hợp</div> : listAccommod.map((e, index) => {
-                        return (
-                          <AccommodationsItemCol key={e.postId}>
-                            <PricingCard to={`/product-detail/${e.postId}`}>
-                              <PricingCardImageHeading
-                                src={
-                                  require(`C:/Users/Ngoc Chi/Desktop/btl-web/easy-accomod-backend/EasyAccomod/EasyAccomod.FrontendApi/${
-                                    e.images.split(";")[0]
-                                  }`).default
-                                }
-                              ></PricingCardImageHeading>
-                              <PricingCardInfo>
-                                <PricingCardInfoWrapper>
-                                  <PricingCardInfoTitle
-                                    to={`/product-detail/${e.postId}`}
-                                  >
-                                    {`Nhà trọ ${e.street}`}
-                                  </PricingCardInfoTitle>
-                                  <PricingCardInfoSubTitle>
-                                    <IconContext.Provider
-                                      value={{ color: "#18ba60", size: "1rem" }}
+                      {listAccommod.length === 0 ? (
+                        <div>Không tìm thấy phòng trọ phù hợp</div>
+                      ) : (
+                        listAccommod.map((e, index) => {
+                          return (
+                            <AccommodationsItemCol key={e.postId}>
+                              <PricingCard to={`/product-detail/${e.postId}`}>
+                                <PricingCardImageHeading
+                                  src={
+                                    require(`C:/Users/Ngoc Chi/Desktop/btl-web/easy-accomod-backend/EasyAccomod/EasyAccomod.FrontendApi/${
+                                      e.images.split(";")[0]
+                                    }`).default
+                                  }
+                                ></PricingCardImageHeading>
+                                <PricingCardInfo>
+                                  <PricingCardInfoWrapper>
+                                    <PricingCardInfoTitle
+                                      to={`/product-detail/${e.postId}`}
                                     >
-                                      <PricingCardInfoLocationIcon></PricingCardInfoLocationIcon>
-                                    </IconContext.Provider>
-                                    <PricingCardInfoLocation>
-                                      {e.street}
-                                    </PricingCardInfoLocation>
-                                  </PricingCardInfoSubTitle>
-                                  <IconContext.Provider
-                                    value={{ color: "#4b59f7", size: "1rem" }}
-                                  >
-                                    <PricingCardInfoDetails>
-                                      <PricingCardInfoItem>
-                                        <FaBed />
-                                        <PricingCardInfoItemDesc>
-                                          {e.rooms}
-                                        </PricingCardInfoItemDesc>
-                                      </PricingCardInfoItem>
-
-                                      <PricingCardInfoItem>
-                                        <FaBath />
-                                        <PricingCardInfoItemDesc>
-                                          {e.infrastructure.bath
-                                            ? "Khép kín"
-                                            : "Chung"}
-                                        </PricingCardInfoItemDesc>
-                                      </PricingCardInfoItem>
-
-                                      <PricingCardInfoItem>
-                                        <FaRegObjectGroup />
-                                        <PricingCardInfoItemDesc>
-                                          {`${e.area} sq ft`}
-                                        </PricingCardInfoItemDesc>
-                                      </PricingCardInfoItem>
-
-                                      <PricingCardInfoItem>
-                                        <FaWarehouse />
-                                        <PricingCardInfoItemDesc>
-                                          2 Garages
-                                        </PricingCardInfoItemDesc>
-                                      </PricingCardInfoItem>
-                                    </PricingCardInfoDetails>
-                                  </IconContext.Provider>
-                                  <PriceProperties>
-                                    <HouseCost>{`$ ${e.price}`}</HouseCost>
+                                      {`Nhà trọ ${e.street}`}
+                                    </PricingCardInfoTitle>
+                                    <PricingCardInfoSubTitle>
+                                      <IconContext.Provider
+                                        value={{
+                                          color: "#18ba60",
+                                          size: "1rem",
+                                        }}
+                                      >
+                                        <PricingCardInfoLocationIcon></PricingCardInfoLocationIcon>
+                                      </IconContext.Provider>
+                                      <PricingCardInfoLocation>
+                                        {e.street}
+                                      </PricingCardInfoLocation>
+                                    </PricingCardInfoSubTitle>
                                     <IconContext.Provider
-                                      value={{
-                                        color: hoverLike ? "#e54242" : "#666",
-                                        size: "1rem",
-                                      }}
+                                      value={{ color: "#4b59f7", size: "1rem" }}
                                     >
-                                      <LikeIcon />
+                                      <PricingCardInfoDetails>
+                                        <PricingCardInfoItem>
+                                          <FaBed />
+                                          <PricingCardInfoItemDesc>
+                                            {e.rooms} phòng
+                                          </PricingCardInfoItemDesc>
+                                        </PricingCardInfoItem>
+
+                                        <PricingCardInfoItem>
+                                          <FaBath />
+                                          <PricingCardInfoItemDesc>
+                                            {e.infrastructure.bath
+                                              ? "Khép kín"
+                                              : "Chung"}
+                                          </PricingCardInfoItemDesc>
+                                        </PricingCardInfoItem>
+
+                                        <PricingCardInfoItem>
+                                          <FaRegObjectGroup />
+                                          <PricingCardInfoItemDesc>
+                                            {`${e.area} mét vuông`}
+                                          </PricingCardInfoItemDesc>
+                                        </PricingCardInfoItem>
+
+                                        <PricingCardInfoItem>
+                                          <FaWarehouse />
+                                          <PricingCardInfoItemDesc>
+                                            2 Garages
+                                          </PricingCardInfoItemDesc>
+                                        </PricingCardInfoItem>
+                                      </PricingCardInfoDetails>
                                     </IconContext.Provider>
-                                  </PriceProperties>
-                                  <PropertyFooter>
-                                    <IconContext.Provider
-                                      value={{ color: "#666", size: "1rem" }}
-                                    >
-                                      <PropertyOwner>
-                                        <FaUser />
-                                        <PropertyOwnerName>
-                                          {e.userName}
-                                        </PropertyOwnerName>
-                                      </PropertyOwner>
-                                      <PropertyTimeStart>
-                                        <FaRegCalendarAlt />
-                                        <PropertyTimeStartDesc>
-                                          {e.publicTime}
-                                        </PropertyTimeStartDesc>
-                                      </PropertyTimeStart>
-                                    </IconContext.Provider>
-                                  </PropertyFooter>
-                                </PricingCardInfoWrapper>
-                              </PricingCardInfo>
-                            </PricingCard>
-                          </AccommodationsItemCol>
-                        );
-                      })}
+                                    <PriceProperties>
+                                      <HouseCost>{`$ ${e.price}`}</HouseCost>
+                                      <IconContext.Provider
+                                        value={{
+                                          color: hoverLike ? "#e54242" : "#666",
+                                          size: "1rem",
+                                        }}
+                                      >
+                                        <LikeIcon />
+                                      </IconContext.Provider>
+                                    </PriceProperties>
+                                    <PropertyFooter>
+                                      <IconContext.Provider
+                                        value={{ color: "#666", size: "1rem" }}
+                                      >
+                                        <PropertyOwner>
+                                          <FaUser />
+                                          <PropertyOwnerName>
+                                            {e.userName}
+                                          </PropertyOwnerName>
+                                        </PropertyOwner>
+                                        <PropertyTimeStart>
+                                          <FaRegCalendarAlt />
+                                          <PropertyTimeStartDesc>
+                                            {e.publicTime}
+                                          </PropertyTimeStartDesc>
+                                        </PropertyTimeStart>
+                                      </IconContext.Provider>
+                                    </PropertyFooter>
+                                  </PricingCardInfoWrapper>
+                                </PricingCardInfo>
+                              </PricingCard>
+                            </AccommodationsItemCol>
+                          );
+                        })
+                      )}
                     </AccommodationsList>
                   )}
                 </AccommodationsListContainer>
@@ -525,34 +532,6 @@ const Accommodations = () => {
                   </AccommodationsFilter>
                 </AccommodationsRightSidebar>
               </AccommodationsContentRow>
-              <AccommodationsPaginationNavigation>
-                <AccommodationsPagination>
-                  <li>
-                    <NavigationPageItem to="/" first>
-                      Prev
-                    </NavigationPageItem>
-                  </li>
-                  <li>
-                    <NavigationPageItem to="/" active>
-                      1
-                    </NavigationPageItem>
-                  </li>
-                  <li>
-                    <NavigationPageItem to="/">2</NavigationPageItem>
-                  </li>
-                  <li>
-                    <NavigationPageItem to="/">3</NavigationPageItem>
-                  </li>
-                  <li>
-                    <NavigationPageItem to="/">4</NavigationPageItem>
-                  </li>
-                  <li>
-                    <NavigationPageItem to="/" last>
-                      Next
-                    </NavigationPageItem>
-                  </li>
-                </AccommodationsPagination>
-              </AccommodationsPaginationNavigation>
             </AccommodationsContentContainer>
           </AccommodationsContentSection>
         </AccommodationsWrapper>

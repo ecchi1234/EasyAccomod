@@ -66,15 +66,21 @@ const EditHouse = () => {
   const [isLoading, setLoading] = React.useState(true);
   const [houseArray, setHouseArray] = React.useState([]);
   const [timeToExtend, setTimeToExtend] = React.useState(0);
+  const [hired, setHired] = React.useState(false);
+  const statusRef = React.useRef();
   React.useEffect(() => {
     handleGetAllPostByOwner();
   }, []);
   const handleGetAllPostByOwner = () => {
+    setLoading(true);
     axios
-      .get("https://localhost:5000/api/Post/getallforowner")
+      .get("https://localhost:5000/api/Post/getallforowner", {
+        withCredentials: true,
+      })
       .then((response) => {
         setHouseArray(() => {
           setHouseArray(response.data);
+          setHired(response.data.hired);
         });
         setLoading(false);
         console.log(response.data);
@@ -85,10 +91,24 @@ const EditHouse = () => {
         console.log(error);
       });
   };
-  
+
   const handleMoveToExtend = () => {
     setExtend(!isExtend);
-  }
+  };
+
+  const handleEditStatus = (id, value) => {
+    axios({
+      url: `https://localhost:5000/api/Post/updatestatus?postId=${id}&hired=${value}`,
+      method: "PUT",
+      withCredentials: true,
+    })
+      .then((res) => {
+        handleGetAllPostByOwner();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       <ProfileScreen>
@@ -102,7 +122,10 @@ const EditHouse = () => {
             <ContentSection>
               <InformationCard>
                 {isExtend ? (
-                  <ExtendTimeSection postExtend={postSelect} goBack={handleMoveToExtend}/>
+                  <ExtendTimeSection
+                    postExtend={postSelect}
+                    goBack={handleMoveToExtend}
+                  />
                 ) : (
                   <>
                     <InformationCardTitle>Danh sách</InformationCardTitle>
@@ -172,21 +195,51 @@ const EditHouse = () => {
                                 </TableColumn>
 
                                 <TableColumn>
-                                  <DeleteButton>
+                                  {/* <DeleteButton>
                                     <StatusValue isRented={house.hired}>
                                       Chưa thuê
                                     </StatusValue>
                                     <EditStatusIcon></EditStatusIcon>
-                                  </DeleteButton>
+                                  </DeleteButton> */}
+                                  <select
+                                    ref={statusRef}
+                                    id={house.postId}
+                                    value={house.hired}
+                                    onChange={(e) => {
+                                      handleEditStatus(
+                                        house.postId,
+                                        e.target.value
+                                      );
+                                    }}
+                                  >
+                                    <option value={true}>Đã thuê</option>
+                                    <option value={false}>Chưa thuê</option>
+                                  </select>
                                 </TableColumn>
 
                                 <TableColumn>
-                                  <EditButton>Chỉnh sửa</EditButton>
-                                  <ExtendButton onClick={() => 
-                                    {
+                                  <Link to={`/edit-information/${house.postId}`}>
+                                    {" "}
+                                    <EditButton
+                                      disabled={
+                                        house.postStatus === 3 ? true : false
+                                      }
+                                      canEdit={
+                                        house.postStatus === 3 ? false : true
+                                      }
+                                    >
+                                      Chỉnh sửa
+                                    </EditButton>
+                                  </Link>
+
+                                  <ExtendButton
+                                    onClick={() => {
                                       setPostSelect(house.postId);
                                       handleMoveToExtend();
-                                    }}>Gia hạn</ExtendButton>
+                                    }}
+                                  >
+                                    Gia hạn
+                                  </ExtendButton>
                                 </TableColumn>
                               </TableRow>
                             );
@@ -196,35 +249,6 @@ const EditHouse = () => {
                     ) : (
                       "Bạn chưa có bài post nào!"
                     )}
-
-                    <AccommodationsPaginationNavigation>
-                      <AccommodationsPagination>
-                        <li>
-                          <NavigationPageItem to="/" first>
-                            Prev
-                          </NavigationPageItem>
-                        </li>
-                        <li>
-                          <NavigationPageItem to="/" active>
-                            1
-                          </NavigationPageItem>
-                        </li>
-                        <li>
-                          <NavigationPageItem to="/">2</NavigationPageItem>
-                        </li>
-                        <li>
-                          <NavigationPageItem to="/">3</NavigationPageItem>
-                        </li>
-                        <li>
-                          <NavigationPageItem to="/">4</NavigationPageItem>
-                        </li>
-                        <li>
-                          <NavigationPageItem to="/" last>
-                            Next
-                          </NavigationPageItem>
-                        </li>
-                      </AccommodationsPagination>
-                    </AccommodationsPaginationNavigation>
                   </>
                 )}
               </InformationCard>

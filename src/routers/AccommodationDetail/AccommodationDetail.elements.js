@@ -12,6 +12,7 @@ import {
   FaCar,
   FaBookMedical,
   FaPhoneAlt,
+  FaRegStar,
 } from "react-icons/fa";
 
 import { IoEye, IoMail } from "react-icons/io5";
@@ -485,7 +486,7 @@ export const StarLabelIcon = styled(FaStar)`
   float: right;
   letter-spacing: 4px;
   color: #dadada;
-  
+
   transition: 0.3s;
 
   &:hover {
@@ -494,9 +495,7 @@ export const StarLabelIcon = styled(FaStar)`
   }
 `;
 
-export const StarLabel = styled.label`
-  
-`;
+export const StarLabel = styled.label``;
 
 export const InputRating = styled.input`
   display: none;
@@ -504,17 +503,19 @@ export const InputRating = styled.input`
   margin-right: 5px;
   box-sizing: border-box;
   padding: 0;
-  &:not(:checked) ~ ${StarLabel}:hover, &:not(:checked) ~  ${StarLabel}:hover ~ ${StarLabel} ${StarLabelIcon}{
+  &:not(:checked)
+    ~ ${StarLabel}:hover,
+    &:not(:checked)
+    ~ ${StarLabel}:hover
+    ~ ${StarLabel}
+    ${StarLabelIcon} {
     color: #ffc107;
     cursor: pointer;
-  } 
+  }
   &:checked ~ ${StarLabel} ${StarLabelIcon} {
     color: #ffc107;
   }
 `;
-
-
-
 
 export const ReviewFormContainer = styled(Column)`
   @media screen and (min-width: 768px) {
@@ -675,6 +676,10 @@ export const RatingBoxContainer = styled.div`
 `;
 
 export const RatingIcon = styled(FaStar)`
+  color: #ffc107;
+  display: inline-block;
+`;
+export const RatingIconEmpty = styled(FaRegStar)`
   color: #ffc107;
   display: inline-block;
 `;
@@ -877,9 +882,7 @@ export const NewAccommod = styled(AgentInformation)`
   margin-top: 30px !important;
 `;
 
-export const RecentPost = styled.div`
-  
-`;
+export const RecentPost = styled.div``;
 
 export const RecentMain = styled.div`
   display: flex;
@@ -933,9 +936,14 @@ export const TimeText = styled.p`
 `;
 
 export const Banner = styled.img`
-display: inline-block;
-    max-width: 100%;
-    height: auto;
-    vertical-align: middle;
-    border-style: none;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border-style: none;
+`;
+
+export const LikeButton = styled.button`
+  border: none;
+  background-color: transparent;
 `;

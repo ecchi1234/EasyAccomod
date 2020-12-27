@@ -18,6 +18,7 @@ import EditHouse from "./routers/EditHouse/EditHouse";
 import Notification from "./routers/Notification/Notification";
 import Chat from "./routers/Chat/Chat";
 import LogOut from "./routers/LogOut/LogOut";
+import EditInformation from "./routers/EditInformationHouse/EditInformationHouse";
 
 import { Widget, addResponseMessage } from "react-chat-widget";
 
@@ -119,6 +120,7 @@ function App() {
             component={ChangePassword}
           />
           <Route path="/add-house" exact component={AddHouse} />
+          <Route path="/edit-information/:postId" exact component={EditInformation} />
           <Route path="/profile/list-house" exact component={HouseStatistic} />
           <Route path="/profile/edit-house" exact component={EditHouse} />
           <Route path="/profile/notification" exact component={Notification} />

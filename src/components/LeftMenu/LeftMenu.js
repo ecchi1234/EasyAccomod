@@ -51,7 +51,7 @@ const LeftMenu = ({ active, route }) => {
               </MenuItemLink>
             </MenuItem>
 
-            <MenuItem>
+            {JSON.parse(localStorage.getItem("role")) === "RENTER" ? (<MenuItem>
               <MenuItemLink
                 active={route === "favorite" ? true : false}
                 to={`/profile/favorite-list`}
@@ -61,8 +61,10 @@ const LeftMenu = ({ active, route }) => {
                 </IconContainer>
                 Danh sách yêu thích
               </MenuItemLink>
-            </MenuItem>
-            <MenuItem>
+            </MenuItem>) : null}
+
+            {(JSON.parse(localStorage.getItem("role")) === "OWNER" || localStorage.getItem("role") === "ADMIN" || localStorage.getItem("role") === "MOD") ? (<>
+              <MenuItem>
               <MenuItemLink
                 active={route === "list-house" ? true : false}
                 to={`/profile/list-house`}
@@ -109,6 +111,10 @@ const LeftMenu = ({ active, route }) => {
                 Thông báo
               </MenuItemLink>
             </MenuItem>
+            
+            </>) : null}
+
+            
 
             {/* <MenuItem>
               <MenuItemLink

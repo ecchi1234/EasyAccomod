@@ -57,7 +57,9 @@ const Notification = () => {
   const [listNotification, setListNotification] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
   const getAllNotification = () => {
-    axios.get(`https://localhost:5000/api/Notification/notifowner`)
+    axios.get(`https://localhost:5000/api/Notification/notifowner`, {
+      withCredentials: true
+    })
     .then((res) => {
       setListNotification(res.data);
       setLoading(false);
@@ -119,7 +121,7 @@ const Notification = () => {
                 </NotificationContentSection>
               </InformationCard>
 
-              <AccommodationsPaginationNavigation>
+              {/* <AccommodationsPaginationNavigation>
                 <AccommodationsPagination>
                   <li>
                     <NavigationPageItem to="/" first>
@@ -146,7 +148,7 @@ const Notification = () => {
                     </NavigationPageItem>
                   </li>
                 </AccommodationsPagination>
-              </AccommodationsPaginationNavigation>
+              </AccommodationsPaginationNavigation> */}
             </ContentSection>
           </Row>
         </ProfileWrapper>

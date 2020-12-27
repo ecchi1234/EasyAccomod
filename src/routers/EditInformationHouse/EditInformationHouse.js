@@ -48,9 +48,9 @@ import {
   AddNearbyButtonContainer,
   DeleteNearbyButton,
   FileUploadComponent,
-} from "./AddHouse.elements";
+} from "../AddHouse/AddHouse.elements";
 
-const AddHouse = () => {
+const EditInformation = () => {
   const handleSubmitPost = () => {
     var formData = new FormData();
     formData.append("Commune", coummune);
@@ -256,7 +256,7 @@ const AddHouse = () => {
         <AccommodationsWrapper>
           <AccommodationsHeaderSection>
             <AccommodationsHeaderTextContainer>
-              <AccommodationsHeaderText>Thêm nhà trọ</AccommodationsHeaderText>
+              <AccommodationsHeaderText>Chỉnh sửa nhà trọ</AccommodationsHeaderText>
             </AccommodationsHeaderTextContainer>
           </AccommodationsHeaderSection>
           <ContentSection>
@@ -981,4 +981,4 @@ const AddHouse = () => {
   );
 };
 
-export default AddHouse;
+export default EditInformation;

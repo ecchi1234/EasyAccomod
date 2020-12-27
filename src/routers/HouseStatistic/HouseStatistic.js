@@ -57,11 +57,12 @@ const HouseStatistic = () => {
   const [houseArray, setHouseArray] = React.useState([]);
   React.useEffect(() => {
     handleGetAllPostByOwner();
-    
   }, []);
   const handleGetAllPostByOwner = () => {
     axios
-      .get("https://localhost:5000/api/Post/getallforowner")
+      .get("https://localhost:5000/api/Post/getallforowner", {
+        withCredentials: true,
+      })
       .then((response) => {
         setHouseArray(() => {
           setHouseArray(response.data);
@@ -90,7 +91,7 @@ const HouseStatistic = () => {
                 <InformationCardTitle>Danh sách</InformationCardTitle>
                 {isLoading ? (
                   "Loading..."
-                ) : (houseArray.length > 0 ? (
+                ) : houseArray.length > 0 ? (
                   <TableResponsive>
                     <thead>
                       <TableRow>
@@ -109,87 +110,67 @@ const HouseStatistic = () => {
                     </thead>
                     <tbody>
                       {houseArray.map((house, index) => {
-                        return <TableRow key={house.postId}>
-                        <FavoriteItemImageContainer>
-                          <LinkContainer>
-                            <FavoriteHouseImage
-                              src={
-                                require(`C:/Users/Ngoc Chi/Desktop/btl-web/easy-accomod-backend/EasyAccomod/EasyAccomod.FrontendApi/${house.images.split(";")[0]}`)
-                                  .default
-                              }
-                            ></FavoriteHouseImage>
-                          </LinkContainer>
-                        </FavoriteItemImageContainer>
-                        <TableColumn>
-                          <LinkContainer to={`/product-detail/${house.postId}`}>
-                            <FavoriteHouseName>Nhà trọ số 1</FavoriteHouseName>
-                          </LinkContainer>
-                          <FavoriteHouseLocation>
-                            144 Xuân Thủy
-                          </FavoriteHouseLocation>
+                        return (
+                          <TableRow key={house.postId}>
+                            <FavoriteItemImageContainer>
+                              <LinkContainer>
+                                <FavoriteHouseImage
+                                  src={
+                                    require(`C:/Users/Ngoc Chi/Desktop/btl-web/easy-accomod-backend/EasyAccomod/EasyAccomod.FrontendApi/${
+                                      house.images.split(";")[0]
+                                    }`).default
+                                  }
+                                ></FavoriteHouseImage>
+                              </LinkContainer>
+                            </FavoriteItemImageContainer>
+                            <TableColumn>
+                              <LinkContainer
+                                to={`/product-detail/${house.postId}`}
+                              >
+                                <FavoriteHouseName>
+                                  Nhà trọ số 1
+                                </FavoriteHouseName>
+                              </LinkContainer>
+                              <FavoriteHouseLocation>
+                                144 Xuân Thủy
+                              </FavoriteHouseLocation>
 
-                          <RatingBox>
-                            <RatingItem>
-                              <FullStarRatingIcon></FullStarRatingIcon>
-                            </RatingItem>
-                            <RatingItem>
-                              <FullStarRatingIcon></FullStarRatingIcon>
-                            </RatingItem>
-                            <RatingItem>
-                              <FullStarRatingIcon></FullStarRatingIcon>
-                            </RatingItem>
-                            <RatingItem>
-                              <FullStarRatingIcon></FullStarRatingIcon>
-                            </RatingItem>
-                            <RatingItem>
-                              <FullStarRatingIcon></FullStarRatingIcon>
-                            </RatingItem>
-                            <RatingItemNumberReview>
-                              (6 đánh giá)
-                            </RatingItemNumberReview>
-                          </RatingBox>
-                        </TableColumn>
-                        <TableColumn>{house.totalView}</TableColumn>
-                        <TableColumn>{house.totalLike}</TableColumn>
-                        <TableColumn>
-                          <p>22/12/2020</p>
-                        </TableColumn>
-                      </TableRow>
+                              <RatingBox>
+                                <RatingItem>
+                                  <FullStarRatingIcon></FullStarRatingIcon>
+                                </RatingItem>
+                                <RatingItem>
+                                  <FullStarRatingIcon></FullStarRatingIcon>
+                                </RatingItem>
+                                <RatingItem>
+                                  <FullStarRatingIcon></FullStarRatingIcon>
+                                </RatingItem>
+                                <RatingItem>
+                                  <FullStarRatingIcon></FullStarRatingIcon>
+                                </RatingItem>
+                                <RatingItem>
+                                  <FullStarRatingIcon></FullStarRatingIcon>
+                                </RatingItem>
+                                <RatingItemNumberReview>
+                                  (6 đánh giá)
+                                </RatingItemNumberReview>
+                              </RatingBox>
+                            </TableColumn>
+                            <TableColumn>{house.totalView}</TableColumn>
+                            <TableColumn>{house.totalLike}</TableColumn>
+                            <TableColumn>
+                              <p>22/12/2020</p>
+                            </TableColumn>
+                          </TableRow>
+                        );
                       })}
                     </tbody>
                   </TableResponsive>
                 ) : (
                   "Bạn chưa đăng post nào!"
-                ))}
+                )}
+
                 
-                <AccommodationsPaginationNavigation>
-                  <AccommodationsPagination>
-                    <li>
-                      <NavigationPageItem to="/" first>
-                        Prev
-                      </NavigationPageItem>
-                    </li>
-                    <li>
-                      <NavigationPageItem to="/" active>
-                        1
-                      </NavigationPageItem>
-                    </li>
-                    <li>
-                      <NavigationPageItem to="/">2</NavigationPageItem>
-                    </li>
-                    <li>
-                      <NavigationPageItem to="/">3</NavigationPageItem>
-                    </li>
-                    <li>
-                      <NavigationPageItem to="/">4</NavigationPageItem>
-                    </li>
-                    <li>
-                      <NavigationPageItem to="/" last>
-                        Next
-                      </NavigationPageItem>
-                    </li>
-                  </AccommodationsPagination>
-                </AccommodationsPaginationNavigation>
               </InformationCard>
             </ContentSection>
           </Row>
