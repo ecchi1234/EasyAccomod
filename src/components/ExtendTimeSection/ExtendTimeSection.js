@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 import { Button } from "../../assets/style/globalStyle";
 
@@ -13,31 +14,82 @@ import {
 } from "../../routers/SignUp/SignUp.elements";
 import { SelectionInput } from "./ExtendTimeSection.elements";
 
-const ExtendTimeSection = () => {
+const ExtendTimeSection = ({ postExtend, goBack }) => {
+  const extendTimeRef = React.useRef();
+  const [extendTime, setExtendTime] = React.useState(0);
+  const [isSubmit, setIsSubmit] = React.useState(false);
+  const [price, setPrice] = React.useState(0);
+  const handleExtendTimeRequest = () => {
+    axios("https://localhost:5000/api/RequestExtend/request", {
+      method: "POST",
+      withCredentials: true,
+      data: {
+        postId: postExtend,
+        userId: JSON.parse(localStorage.getItem("token")),
+        requestTime: parseInt(extendTime),
+      },
+    })
+      .then((res) => {
+        setIsSubmit(true);
+        setPrice(res.data.costOfExtend);
+        console.log("done");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <>
       <InformationCardTitle>Gia hạn thời gian</InformationCardTitle>
-      <SignUpForm>
-        <SignUpFormGroup>
-          <FormLabel>Thời gian hiển thị thêm </FormLabel>
-          <FormTextInput></FormTextInput>
-        </SignUpFormGroup>
+      <div>
+        {isSubmit ? (
+          <>
+            <div>
+              Yeu cau gia han cua quy khach dang duoc xem xet. Ket qua se duoc
+              thong bao toi quy khach
+            </div>
+            <br></br>
+          </>
+        ) : (
+          <br>
+            <SignUpFormGroup>
+              <FormLabel>Thời gian hiển thị thêm </FormLabel>
+              <FormTextInput
+                ref={extendTimeRef}
+                onChange={() => {
+                  setExtendTime(extendTimeRef.current.value);
+                }}
+              ></FormTextInput>
+            </SignUpFormGroup>
 
-        <SignUpFormGroup>
-          <FormLabel>Đơn vị</FormLabel>
-          <SelectionInput>
-              <option>Ngày</option>
-              <option>Tuần</option>
-              <option>Tháng</option>
-              <option>Năm</option>
-          </SelectionInput>
-        </SignUpFormGroup>
-        <TotalCost>Tổng tiền:</TotalCost>
-        <span>100.000 đ</span>
+            <SignUpFormGroup>
+              <FormLabel>Đơn vị</FormLabel>
+              <SelectionInput>
+                <option>Ngày</option>
+                <option>Tuần</option>
+                <option>Tháng</option>
+                <option>Năm</option>
+              </SelectionInput>
+            </SignUpFormGroup>
+          </br>
+        )}
+
+        <TotalCost>Tổng tiền: </TotalCost>
+        <span>{price} đ</span>
         <br></br>
         <br></br>
-        <Button>Cập nhật</Button>
-      </SignUpForm>
+        <Button
+          onClick={() => {
+            if (isSubmit) {
+              goBack();
+            } else {
+              handleExtendTimeRequest();
+            }
+          }}
+        >
+          {isSubmit ? "Quay ve" : "Cap nhat"}
+        </Button>
+      </div>
     </>
   );
 };

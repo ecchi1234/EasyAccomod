@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { IconContext } from "react-icons/lib";
 
 import { Button } from "../../assets/style/globalStyle";
@@ -52,6 +53,28 @@ import {
 } from "./HouseStatistic.elements";
 
 const HouseStatistic = () => {
+  const [isLoading, setLoading] = React.useState(true);
+  const [houseArray, setHouseArray] = React.useState([]);
+  React.useEffect(() => {
+    handleGetAllPostByOwner();
+    
+  }, []);
+  const handleGetAllPostByOwner = () => {
+    axios
+      .get("https://localhost:5000/api/Post/getallforowner")
+      .then((response) => {
+        setHouseArray(() => {
+          setHouseArray(response.data);
+        });
+        setLoading(false);
+        console.log(response.data);
+        console.log(houseArray.length);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
+  };
   return (
     <>
       <ProfileScreen>
@@ -65,215 +88,80 @@ const HouseStatistic = () => {
             <ContentSection>
               <InformationCard>
                 <InformationCardTitle>Danh sách</InformationCardTitle>
-                <TableResponsive>
-                  <thead>
-                    <TableRow>
-                      <TableHeadingCell p="pl-2">Các bài đăng</TableHeadingCell>
-                      <TableHeadingCell p="p-0"></TableHeadingCell>
-                      <TableHeadingCell>Lượt xem</TableHeadingCell>
-                      <TableHeadingCell>Lượt thích</TableHeadingCell>
-                      <TableHeadingCell>Truy cập nhiều</TableHeadingCell>
-                      
+                {isLoading ? (
+                  "Loading..."
+                ) : (houseArray.length > 0 ? (
+                  <TableResponsive>
+                    <thead>
+                      <TableRow>
+                        <TableHeadingCell p="pl-2">
+                          Các bài đăng
+                        </TableHeadingCell>
+                        <TableHeadingCell p="p-0"></TableHeadingCell>
+                        <TableHeadingCell>Lượt xem</TableHeadingCell>
+                        <TableHeadingCell>Lượt thích</TableHeadingCell>
+                        <TableHeadingCell>Truy cập nhiều</TableHeadingCell>
 
-                      {/* <TableHeadingCell >
+                        {/* <TableHeadingCell >
                         Trạng thái
                       </TableHeadingCell> */}
-                    </TableRow>
-                  </thead>
-                  <tbody>
-                    <TableRow>
-                      <FavoriteItemImageContainer>
-                        <LinkContainer>
-                          <FavoriteHouseImage
-                            src={
-                              require("../../assets/img/feature-properties/fp-1.jpg")
-                                .default
-                            }
-                          ></FavoriteHouseImage>
-                        </LinkContainer>
-                      </FavoriteItemImageContainer>
-                      <TableColumn>
-                        <LinkContainer to="/product-detail">
-                          <FavoriteHouseName>Nhà trọ số 1</FavoriteHouseName>
-                        </LinkContainer>
-                        <FavoriteHouseLocation>
-                          144 Xuân Thủy
-                        </FavoriteHouseLocation>
+                      </TableRow>
+                    </thead>
+                    <tbody>
+                      {houseArray.map((house, index) => {
+                        return <TableRow key={house.postId}>
+                        <FavoriteItemImageContainer>
+                          <LinkContainer>
+                            <FavoriteHouseImage
+                              src={
+                                require(`C:/Users/Ngoc Chi/Desktop/btl-web/easy-accomod-backend/EasyAccomod/EasyAccomod.FrontendApi/${house.images.split(";")[0]}`)
+                                  .default
+                              }
+                            ></FavoriteHouseImage>
+                          </LinkContainer>
+                        </FavoriteItemImageContainer>
+                        <TableColumn>
+                          <LinkContainer to={`/product-detail/${house.postId}`}>
+                            <FavoriteHouseName>Nhà trọ số 1</FavoriteHouseName>
+                          </LinkContainer>
+                          <FavoriteHouseLocation>
+                            144 Xuân Thủy
+                          </FavoriteHouseLocation>
 
-                        <RatingBox>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItemNumberReview>
-                            (6 đánh giá)
-                          </RatingItemNumberReview>
-                        </RatingBox>
-                      </TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>
-                        <p>22/12/2020</p>
-                      </TableColumn>
-                      
-                    </TableRow>
-
-                    <TableRow>
-                      <FavoriteItemImageContainer>
-                        <LinkContainer>
-                          <FavoriteHouseImage
-                            src={
-                              require("../../assets/img/feature-properties/fp-2.jpg")
-                                .default
-                            }
-                          ></FavoriteHouseImage>
-                        </LinkContainer>
-                      </FavoriteItemImageContainer>
-                      <TableColumn>
-                        <LinkContainer to="/product-detail">
-                          <FavoriteHouseName>Nhà trọ số 1</FavoriteHouseName>
-                        </LinkContainer>
-                        <FavoriteHouseLocation>
-                          144 Xuân Thủy
-                        </FavoriteHouseLocation>
-
-                        <RatingBox>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItemNumberReview>
-                            (6 đánh giá)
-                          </RatingItemNumberReview>
-                        </RatingBox>
-                      </TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>
-                        <p>22/12/2020</p>
-                      </TableColumn>
-                      
-                    </TableRow>
-
-                    <TableRow>
-                      <FavoriteItemImageContainer>
-                        <LinkContainer>
-                          <FavoriteHouseImage
-                            src={
-                              require("../../assets/img/feature-properties/fp-3.jpg")
-                                .default
-                            }
-                          ></FavoriteHouseImage>
-                        </LinkContainer>
-                      </FavoriteItemImageContainer>
-                      <TableColumn>
-                        <LinkContainer to="/product-detail">
-                          <FavoriteHouseName>Nhà trọ số 1</FavoriteHouseName>
-                        </LinkContainer>
-                        <FavoriteHouseLocation>
-                          144 Xuân Thủy
-                        </FavoriteHouseLocation>
-
-                        <RatingBox>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItemNumberReview>
-                            (6 đánh giá)
-                          </RatingItemNumberReview>
-                        </RatingBox>
-                      </TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>
-                        <p>22/12/2020</p>
-                      </TableColumn>
-                      
-                    </TableRow>
-
-                    <TableRow>
-                      <FavoriteItemImageContainer>
-                        <LinkContainer>
-                          <FavoriteHouseImage
-                            src={
-                              require("../../assets/img/raw-2.jpg")
-                                .default
-                            }
-                          ></FavoriteHouseImage>
-                        </LinkContainer>
-                      </FavoriteItemImageContainer>
-                      <TableColumn>
-                        <LinkContainer to="/product-detail">
-                          <FavoriteHouseName>Nhà trọ số 1</FavoriteHouseName>
-                        </LinkContainer>
-                        <FavoriteHouseLocation>
-                          144 Xuân Thủy
-                        </FavoriteHouseLocation>
-
-                        <RatingBox>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItemNumberReview>
-                            (6 đánh giá)
-                          </RatingItemNumberReview>
-                        </RatingBox>
-                      </TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>1000</TableColumn>
-                      <TableColumn>
-                        <p>22/12/2020</p>
-                      </TableColumn>
-                      
-                    </TableRow>
-                  </tbody>
-                </TableResponsive>
+                          <RatingBox>
+                            <RatingItem>
+                              <FullStarRatingIcon></FullStarRatingIcon>
+                            </RatingItem>
+                            <RatingItem>
+                              <FullStarRatingIcon></FullStarRatingIcon>
+                            </RatingItem>
+                            <RatingItem>
+                              <FullStarRatingIcon></FullStarRatingIcon>
+                            </RatingItem>
+                            <RatingItem>
+                              <FullStarRatingIcon></FullStarRatingIcon>
+                            </RatingItem>
+                            <RatingItem>
+                              <FullStarRatingIcon></FullStarRatingIcon>
+                            </RatingItem>
+                            <RatingItemNumberReview>
+                              (6 đánh giá)
+                            </RatingItemNumberReview>
+                          </RatingBox>
+                        </TableColumn>
+                        <TableColumn>{house.totalView}</TableColumn>
+                        <TableColumn>{house.totalLike}</TableColumn>
+                        <TableColumn>
+                          <p>22/12/2020</p>
+                        </TableColumn>
+                      </TableRow>
+                      })}
+                    </tbody>
+                  </TableResponsive>
+                ) : (
+                  "Bạn chưa đăng post nào!"
+                ))}
+                
                 <AccommodationsPaginationNavigation>
                   <AccommodationsPagination>
                     <li>

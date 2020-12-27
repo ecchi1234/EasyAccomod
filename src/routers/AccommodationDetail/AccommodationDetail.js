@@ -4,6 +4,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../assets/style/customSlider.css";
 import Slider from "react-slick";
+import {useParams} from "react-router-dom";
+
+import axios from "axios";
 
 import {
   AccommodationsPagination,
@@ -131,6 +134,21 @@ import {
 } from "./AccommodationDetail.elements";
 
 const AccommodationDetail = () => {
+  const { postId } = useParams();
+  const [postInformation, setPostInformation] = React.useState({});
+  const [isLoading, setLoading] = React.useState(true);
+  const handleViewPost = () => {
+    axios.get(`https://localhost:5000/api/Post/view?${postId}`).then((res) => {
+      setPostInformation(res.data);
+      setLoading(false);
+    })
+    .catch((err) => {
+      setLoading(true);
+    })
+  };
+  React.useEffect(() => {
+    handleViewPost();
+  }, []);
   return (
     <>
       <AccommodDetailScreen>
@@ -145,8 +163,8 @@ const AccommodationDetail = () => {
                 <AccommodDetailHeadingWrap>
                   <AccommodDetailHeadingLeft>
                     <AccommodDetailTitle>
-                      Nhà trọ siêu vip
-                      <AccommodDetailTag>Cho thuê</AccommodDetailTag>
+                      {`Nhà trọ ${postInformation.street}`}
+                      <AccommodDetailTag>{postInformation.hired ? "Đã thuê" : "Cho thuê"}</AccommodDetailTag>
                       <IconContext.Provider value={{ size: 25 }}>
                         <AccommodDetailLikeButtonIcon></AccommodDetailLikeButtonIcon>
                       </IconContext.Provider>
@@ -155,17 +173,17 @@ const AccommodationDetail = () => {
                     <AccommodDetailStatistic>
                       <AccommodDetailLikeCount>
                         <AccommodDetailLikeIcon></AccommodDetailLikeIcon>
-                        <AccommodDetailLikeValue>1000</AccommodDetailLikeValue>
+                        <AccommodDetailLikeValue>{postInformation.totalLike}</AccommodDetailLikeValue>
                       </AccommodDetailLikeCount>
                       <AccommodDetailSeeCount>
                         <AccommodDetailSeeIcon></AccommodDetailSeeIcon>
-                        <AccommodDetailSeeValue>2000000</AccommodDetailSeeValue>
+                        <AccommodDetailSeeValue>{postInformation.totalView}</AccommodDetailSeeValue>
                       </AccommodDetailSeeCount>
                     </AccommodDetailStatistic>
                   </AccommodDetailHeadingLeft>
 
                   <AccommodDetailHeadingRight>
-                    <AccommodDetailPrice>$ 100,000</AccommodDetailPrice>
+                    <AccommodDetailPrice>{postInformation.price}</AccommodDetailPrice>
                     <span style={{ color: "#666" }}>/tháng</span>
                   </AccommodDetailHeadingRight>
                 </AccommodDetailHeadingWrap>

@@ -1,4 +1,6 @@
 import React from "react";
+
+import {AuthContext} from "../../App"
 import {
   AvatarClearFix,
   AvatarImage,
@@ -22,7 +24,8 @@ import {
 } from "./LeftMenu.elements";
 
 const LeftMenu = ({ active, route }) => {
-  
+  // handle login state using context
+  const { state, dispatch } = React.useContext(AuthContext);
   return (
     <>
       <LeftMenuContainer>
@@ -32,7 +35,7 @@ const LeftMenu = ({ active, route }) => {
           ></AvatarImage>
         </AvatarClearFix>
         <NameUser>
-          <NameUserText>Ecchi Sama</NameUserText>
+          <NameUserText>{localStorage.getItem("user") === null ? "Guest" : JSON.parse(localStorage.user).userName}</NameUserText>
         </NameUser>
         <MenuItemContainerClearFix>
           <MenuItemList>
@@ -134,7 +137,7 @@ const LeftMenu = ({ active, route }) => {
             <MenuItem>
               <MenuItemLink
                 active={route === "log-out" ? true : false}
-                to={`/profile/change-password`}
+                to={`/log-out`}
               >
                 <IconContainer>
                   <SignOutIcon></SignOutIcon>

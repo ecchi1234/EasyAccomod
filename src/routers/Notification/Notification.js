@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { IconContext } from "react-icons/lib";
 
 import { FaCheck } from "react-icons/fa";
@@ -53,6 +54,23 @@ import {
 } from "./Notification.elements";
 
 const Notification = () => {
+  const [listNotification, setListNotification] = React.useState([]);
+  const [isLoading, setLoading] = React.useState(true);
+  const getAllNotification = () => {
+    axios.get(`https://localhost:5000/api/Notification/notifowner`)
+    .then((res) => {
+      setListNotification(res.data);
+      setLoading(false);
+    })
+    .catch((err) => {
+      setLoading(false);
+      console.log(err);
+    })
+  };
+
+  React.useEffect(() => {
+    getAllNotification();
+  }, [])
   return (
     <>
       <ProfileScreen>
@@ -64,16 +82,18 @@ const Notification = () => {
               </LeftMenuContainer>
             </LeftMenuWrapper>
             <ContentSection>
-              <InformationCard>
+              {listNotification.map((noti, index) => {
+                return (
+                  <InformationCard>
                 <InformationCardTitle>Thông báo</InformationCardTitle>
                 <NotificationTitleSection>
                   <NotificationTitleConfirmedIcon></NotificationTitleConfirmedIcon>
-                  <NotificationTitleValue isConfirmed={true}>
+                  <NotificationTitleValue isConfirmed={noti.content === "POST_ACCEPTED" ? true : false}>
                     Bài đăng "Nhà trọ số 1" đã được phê duyệt
                   </NotificationTitleValue>
                 </NotificationTitleSection>
                 <NotificationContentSection>
-                  <div>Ngày phê duyệt: 01/01/2021</div>
+                  <div>{`Ngày phê duyệt: ${noti.notifTime}`}</div>
                   <div>Ngày hết hạn: 01/02/2021</div>
                   <div>Số tiền cần trả: 100.000đ</div>
                   <div>
@@ -81,6 +101,9 @@ const Notification = () => {
                   </div>
                 </NotificationContentSection>
               </InformationCard>
+                )
+              })}
+              
 
               <InformationCard>
                 <InformationCardTitle>Thông báo</InformationCardTitle>

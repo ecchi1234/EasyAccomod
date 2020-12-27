@@ -1,9 +1,10 @@
 import React from "react";
+import axios from "axios";
 import { IconContext } from "react-icons/lib";
 
 import { Button } from "../../assets/style/globalStyle";
 import { LeftMenu } from "../../components";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import ExtendTimeSection from "../../components/ExtendTimeSection/ExtendTimeSection";
 import {
@@ -52,10 +53,42 @@ import {
   StatisticBox,
   EachStatisticContainer,
 } from "../HouseStatistic/HouseStatistic.elements";
-import { EditButton, EditStatusIcon, StatusValue, ExtendButton } from "./EditHouse.elements";
+import {
+  EditButton,
+  EditStatusIcon,
+  StatusValue,
+  ExtendButton,
+} from "./EditHouse.elements";
 
 const EditHouse = () => {
   const [isExtend, setExtend] = React.useState(false);
+  const [postSelect, setPostSelect] = React.useState(null);
+  const [isLoading, setLoading] = React.useState(true);
+  const [houseArray, setHouseArray] = React.useState([]);
+  const [timeToExtend, setTimeToExtend] = React.useState(0);
+  React.useEffect(() => {
+    handleGetAllPostByOwner();
+  }, []);
+  const handleGetAllPostByOwner = () => {
+    axios
+      .get("https://localhost:5000/api/Post/getallforowner")
+      .then((response) => {
+        setHouseArray(() => {
+          setHouseArray(response.data);
+        });
+        setLoading(false);
+        console.log(response.data);
+        console.log(houseArray.length);
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error);
+      });
+  };
+  
+  const handleMoveToExtend = () => {
+    setExtend(!isExtend);
+  }
   return (
     <>
       <ProfileScreen>
@@ -68,266 +101,132 @@ const EditHouse = () => {
             </LeftMenuWrapper>
             <ContentSection>
               <InformationCard>
-                {isExtend ? (<ExtendTimeSection/>) : (<><InformationCardTitle>Danh sách</InformationCardTitle>
-                <TableResponsive>
-                  <thead>
-                    <TableRow>
-                      <TableHeadingCell p="pl-2">Các bài đăng</TableHeadingCell>
-                      <TableHeadingCell p="p-0"></TableHeadingCell>
-                      
-                      <TableHeadingCell>Trạng thái</TableHeadingCell>
-                      
-                      <TableHeadingCell>Hành động</TableHeadingCell>
+                {isExtend ? (
+                  <ExtendTimeSection postExtend={postSelect} goBack={handleMoveToExtend}/>
+                ) : (
+                  <>
+                    <InformationCardTitle>Danh sách</InformationCardTitle>
+                    {isLoading ? (
+                      "Loading...."
+                    ) : houseArray.length > 0 ? (
+                      <TableResponsive>
+                        <thead>
+                          <TableRow>
+                            <TableHeadingCell p="pl-2">
+                              Các bài đăng
+                            </TableHeadingCell>
+                            <TableHeadingCell p="p-0"></TableHeadingCell>
 
-                      
-                    </TableRow>
-                  </thead>
-                  <tbody>
-                    <TableRow>
-                      <FavoriteItemImageContainer>
-                        <LinkContainer>
-                          <FavoriteHouseImage
-                            src={
-                              require("../../assets/img/feature-properties/fp-1.jpg")
-                                .default
-                            }
-                          ></FavoriteHouseImage>
-                        </LinkContainer>
-                      </FavoriteItemImageContainer>
-                      <TableColumn>
-                        <LinkContainer to="/product-detail">
-                          <FavoriteHouseName>Nhà trọ số 1</FavoriteHouseName>
-                        </LinkContainer>
-                        <FavoriteHouseLocation>
-                          144 Xuân Thủy
-                        </FavoriteHouseLocation>
+                            <TableHeadingCell>Trạng thái</TableHeadingCell>
 
-                        <RatingBox>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItemNumberReview>
-                            (6 đánh giá)
-                          </RatingItemNumberReview>
-                        </RatingBox>
-                      </TableColumn>
-                      
-                      <TableColumn>
-                        <DeleteButton>
-                          <StatusValue isRented={false}>Chưa thuê</StatusValue>
-                          <EditStatusIcon></EditStatusIcon>
-                        </DeleteButton>
-                      </TableColumn>
-                      
-                      <TableColumn>
-                        <EditButton>Chỉnh sửa</EditButton>
-                        <ExtendButton>Gia hạn</ExtendButton>
-                      </TableColumn>
-                    </TableRow>
+                            <TableHeadingCell>Hành động</TableHeadingCell>
+                          </TableRow>
+                        </thead>
+                        <tbody>
+                          {houseArray.map((house, index) => {
+                            return (
+                              <TableRow key={house.postId}>
+                                <FavoriteItemImageContainer>
+                                  <LinkContainer>
+                                    <FavoriteHouseImage
+                                      src={
+                                        require(`C:/Users/Ngoc Chi/Desktop/btl-web/easy-accomod-backend/EasyAccomod/EasyAccomod.FrontendApi/${
+                                          house.images.split(";")[0]
+                                        }`).default
+                                      }
+                                    ></FavoriteHouseImage>
+                                  </LinkContainer>
+                                </FavoriteItemImageContainer>
+                                <TableColumn>
+                                  <LinkContainer
+                                    to={`/product-detail/${house.postId}`}
+                                  >
+                                    <FavoriteHouseName>
+                                      {`Nhà trọ ${house.street}`}
+                                    </FavoriteHouseName>
+                                  </LinkContainer>
+                                  <FavoriteHouseLocation>
+                                    {`${house.street}`}
+                                  </FavoriteHouseLocation>
 
-                    <TableRow>
-                      <FavoriteItemImageContainer>
-                        <LinkContainer>
-                          <FavoriteHouseImage
-                            src={
-                              require("../../assets/img/feature-properties/fp-2.jpg")
-                                .default
-                            }
-                          ></FavoriteHouseImage>
-                        </LinkContainer>
-                      </FavoriteItemImageContainer>
-                      <TableColumn>
-                        <LinkContainer to="/product-detail">
-                          <FavoriteHouseName>Nhà trọ số 1</FavoriteHouseName>
-                        </LinkContainer>
-                        <FavoriteHouseLocation>
-                          144 Xuân Thủy
-                        </FavoriteHouseLocation>
+                                  <RatingBox>
+                                    <RatingItem>
+                                      <FullStarRatingIcon></FullStarRatingIcon>
+                                    </RatingItem>
+                                    <RatingItem>
+                                      <FullStarRatingIcon></FullStarRatingIcon>
+                                    </RatingItem>
+                                    <RatingItem>
+                                      <FullStarRatingIcon></FullStarRatingIcon>
+                                    </RatingItem>
+                                    <RatingItem>
+                                      <FullStarRatingIcon></FullStarRatingIcon>
+                                    </RatingItem>
+                                    <RatingItem>
+                                      <FullStarRatingIcon></FullStarRatingIcon>
+                                    </RatingItem>
+                                    <RatingItemNumberReview>
+                                      (6 đánh giá)
+                                    </RatingItemNumberReview>
+                                  </RatingBox>
+                                </TableColumn>
 
-                        <RatingBox>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItemNumberReview>
-                            (6 đánh giá)
-                          </RatingItemNumberReview>
-                        </RatingBox>
-                      </TableColumn>
-                      
-                      <TableColumn>
-                        <DeleteButton>
-                          <StatusValue isRented={true}>Đã thuê</StatusValue>
-                          <EditStatusIcon></EditStatusIcon>
-                        </DeleteButton>
-                      </TableColumn>
-                     
-                      <TableColumn>
-                        <EditButton>Chỉnh sửa</EditButton>
-                        <Link><ExtendButton onClick={() => {setExtend(true)}}>Gia hạn</ExtendButton></Link>
-                      </TableColumn>
-                    </TableRow>
+                                <TableColumn>
+                                  <DeleteButton>
+                                    <StatusValue isRented={house.hired}>
+                                      Chưa thuê
+                                    </StatusValue>
+                                    <EditStatusIcon></EditStatusIcon>
+                                  </DeleteButton>
+                                </TableColumn>
 
-                    <TableRow>
-                      <FavoriteItemImageContainer>
-                        <LinkContainer>
-                          <FavoriteHouseImage
-                            src={
-                              require("../../assets/img/feature-properties/fp-3.jpg")
-                                .default
-                            }
-                          ></FavoriteHouseImage>
-                        </LinkContainer>
-                      </FavoriteItemImageContainer>
-                      <TableColumn>
-                        <LinkContainer to="/product-detail">
-                          <FavoriteHouseName>Nhà trọ số 1</FavoriteHouseName>
-                        </LinkContainer>
-                        <FavoriteHouseLocation>
-                          144 Xuân Thủy
-                        </FavoriteHouseLocation>
+                                <TableColumn>
+                                  <EditButton>Chỉnh sửa</EditButton>
+                                  <ExtendButton onClick={() => 
+                                    {
+                                      setPostSelect(house.postId);
+                                      handleMoveToExtend();
+                                    }}>Gia hạn</ExtendButton>
+                                </TableColumn>
+                              </TableRow>
+                            );
+                          })}
+                        </tbody>
+                      </TableResponsive>
+                    ) : (
+                      "Bạn chưa có bài post nào!"
+                    )}
 
-                        <RatingBox>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItemNumberReview>
-                            (6 đánh giá)
-                          </RatingItemNumberReview>
-                        </RatingBox>
-                      </TableColumn>
-                      
-                      <TableColumn>
-                        <DeleteButton>
-                          <StatusValue isRented={false}>Chưa thuê</StatusValue>
-                          <EditStatusIcon></EditStatusIcon>
-                        </DeleteButton>
-                      </TableColumn>
-                    
-                      <TableColumn>
-                        <EditButton>Chỉnh sửa</EditButton>
-                        <Link><ExtendButton onClick={() => {setExtend(true)}}>Gia hạn</ExtendButton></Link>
-                      </TableColumn>
-                    </TableRow>
-
-                    <TableRow>
-                      <FavoriteItemImageContainer>
-                        <LinkContainer>
-                          <FavoriteHouseImage
-                            src={require("../../assets/img/raw-2.jpg").default}
-                          ></FavoriteHouseImage>
-                        </LinkContainer>
-                      </FavoriteItemImageContainer>
-                      <TableColumn>
-                        <LinkContainer to="/product-detail">
-                          <FavoriteHouseName>Nhà trọ số 1</FavoriteHouseName>
-                        </LinkContainer>
-                        <FavoriteHouseLocation>
-                          144 Xuân Thủy
-                        </FavoriteHouseLocation>
-
-                        <RatingBox>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItem>
-                            <FullStarRatingIcon></FullStarRatingIcon>
-                          </RatingItem>
-                          <RatingItemNumberReview>
-                            (6 đánh giá)
-                          </RatingItemNumberReview>
-                        </RatingBox>
-                      </TableColumn>
-                      
-                      <TableColumn>
-                        <DeleteButton>
-                          <StatusValue isRented={true}>Đã thuê</StatusValue>
-                          <EditStatusIcon></EditStatusIcon>
-                        </DeleteButton>
-                      </TableColumn>
-                  
-                      <TableColumn>
-                        <EditButton>Chỉnh sửa</EditButton>
-                        <Link><ExtendButton onClick={() => {setExtend(true)}}>Gia hạn</ExtendButton></Link>
-                      </TableColumn>
-                    </TableRow>
-                  </tbody>
-                </TableResponsive>
-                <AccommodationsPaginationNavigation>
-                  <AccommodationsPagination>
-                    <li>
-                      <NavigationPageItem to="/" first>
-                        Prev
-                      </NavigationPageItem>
-                    </li>
-                    <li>
-                      <NavigationPageItem to="/" active>
-                        1
-                      </NavigationPageItem>
-                    </li>
-                    <li>
-                      <NavigationPageItem to="/">2</NavigationPageItem>
-                    </li>
-                    <li>
-                      <NavigationPageItem to="/">3</NavigationPageItem>
-                    </li>
-                    <li>
-                      <NavigationPageItem to="/">4</NavigationPageItem>
-                    </li>
-                    <li>
-                      <NavigationPageItem to="/" last>
-                        Next
-                      </NavigationPageItem>
-                    </li>
-                  </AccommodationsPagination>
-                </AccommodationsPaginationNavigation>
-                </>)}
-
-               
+                    <AccommodationsPaginationNavigation>
+                      <AccommodationsPagination>
+                        <li>
+                          <NavigationPageItem to="/" first>
+                            Prev
+                          </NavigationPageItem>
+                        </li>
+                        <li>
+                          <NavigationPageItem to="/" active>
+                            1
+                          </NavigationPageItem>
+                        </li>
+                        <li>
+                          <NavigationPageItem to="/">2</NavigationPageItem>
+                        </li>
+                        <li>
+                          <NavigationPageItem to="/">3</NavigationPageItem>
+                        </li>
+                        <li>
+                          <NavigationPageItem to="/">4</NavigationPageItem>
+                        </li>
+                        <li>
+                          <NavigationPageItem to="/" last>
+                            Next
+                          </NavigationPageItem>
+                        </li>
+                      </AccommodationsPagination>
+                    </AccommodationsPaginationNavigation>
+                  </>
+                )}
               </InformationCard>
             </ContentSection>
           </Row>

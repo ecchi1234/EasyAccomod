@@ -41,32 +41,35 @@ import {
 const Login = (props) => {
   // handle login state using context
   const { dispatch } = React.useContext(AuthContext);
-  
+
   // information input
   const username = useFormInput("");
   const password = useFormInput("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  
-
   // handle button click of login form
   const handleLogin = () => {
     setError(null);
     setLoading(true);
-    axios
-      .post("https://localhost:5000/api/Login/login", {
+    axios({
+      url: "https://localhost:5000/api/Login/login",
+      method: "POST",
+      data: {
         username: username.value,
         password: password.value,
-      })
+      },
+      withCredentials: true,
+    })
       .then((response) => {
-        dispatch({
-          type: "LOGIN",
-          payload: response.data
-      })
         console.log(response);
         setLoading(false);
-        props.history.push("/profile");
+        dispatch({
+          type: "LOGIN",
+          payload: response.data,
+        });
+
+        props.history.push("/");
       })
       .catch((error) => {
         setLoading(false);
@@ -135,7 +138,7 @@ const Login = (props) => {
                 <LinkToLoginPage to="/sign-up">Đăng ký</LinkToLoginPage>
               </span>
             </HaveAccountText>
-            <ErrorNotification>1</ErrorNotification>
+            <ErrorNotification></ErrorNotification>
           </SignUpForm>
         </SignUpSection>
       </SignUpSectionContainer>

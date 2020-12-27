@@ -47,6 +47,23 @@ export const FormTextInput = styled.input`
   margin: 0;
 `;
 
+export const SelectTextInput = styled.select`
+  padding: 0.7rem;
+  border: 1px solid #dddddd;
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: #464a4c;
+  background-color: #fff;
+  background-image: none;
+  background-clip: padding-box;
+  border-radius: 0.25rem;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  overflow: visible;
+  margin: 0;
+`;
+
 export const SubmitButton = styled.input`
   display: block;
   width: 100%;
@@ -83,5 +100,5 @@ export const LinkToLoginPage = styled(Link)`
 `;
 
 export const ErrorNotification = styled.span`
-color: red;
+  color: red;
 `;

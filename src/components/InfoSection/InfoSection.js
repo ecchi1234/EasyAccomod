@@ -42,24 +42,13 @@ const InfoSection = ({
                 <TopLine lightTopLine={lightTopLine}>{topLine}</TopLine>
                 <Heading lightText={lightText}>{headline}</Heading>
                 <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
-                {
-                  first ? (<Form>
-                  <FormInput
-                    name="find"
-                    type="text"
-                    placeholder="Bạn muốn tìm gì?"
-                  ></FormInput>
+                
                   <Link to="/sign-up">
                     <Button fontBig primary={primary}>
                       {buttonLabel}
                     </Button>
                   </Link>
-                </Form>) : (<Link to="/sign-up">
-                    <Button fontBig primary={primary}>
-                      {buttonLabel}
-                    </Button>
-                  </Link>)
-                }
+                
                 
               </TextWrapper>
             </InfoColumn>

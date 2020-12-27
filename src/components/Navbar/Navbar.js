@@ -15,7 +15,10 @@ import {
   NavBtnLink,
 } from "./Navbar.elements";
 
-const Navbar = ({ isLogged, isOwner }) => {
+import { AuthContext } from "../../App";
+
+const Navbar = ({ isLogged, isOwner, lastName}) => {
+  
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -56,34 +59,30 @@ const Navbar = ({ isLogged, isOwner }) => {
               <NavItem>
                 <NavLinks to="/products">Nhà trọ</NavLinks>
               </NavItem>
-
               
-
-              <NavItem>
-                <NavLinks to="/products">Liên hệ</NavLinks>
-              </NavItem>
 
               {isLogged ? (
                 <NavItem>
-                  <NavLinks to="/profile">Xin chào, Chi</NavLinks>
+                  <NavLinks to="/profile">{`Xin chào, ${lastName}`}</NavLinks>
                 </NavItem>
               ) : (
                 <NavItemBtn>
                   {button ? (
                     <NavBtnLink to="/sign-up">
-                      <Button primary>SIGN UP</Button>
+                      <Button primary>ĐĂNG KÝ</Button>
                     </NavBtnLink>
                   ) : (
                     <NavBtnLink to="/sign-up">
                       <Button fontBig primary>
-                        Signup
+                        Đăng ký
                       </Button>
                     </NavBtnLink>
                   )}
                 </NavItemBtn>
               )}
 
-              {isOwner ? (<NavItemBtn>
+              {isLogged ? (isOwner ? (
+                <NavItemBtn>
                   {button ? (
                     <NavBtnLink to="/add-house">
                       <Button primary>THÊM POST</Button>
@@ -95,7 +94,8 @@ const Navbar = ({ isLogged, isOwner }) => {
                       </Button>
                     </NavBtnLink>
                   )}
-                </NavItemBtn>) : null}
+                </NavItemBtn>
+              ) : null) : null}
 
               {/* <NavItemBtn>
                 {button ? (

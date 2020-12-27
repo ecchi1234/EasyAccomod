@@ -169,6 +169,10 @@ export const UploadImageIcon = styled(FaCloudUploadAlt)`
   }
 `;
 
+export const FileUploadComponent = styled.input`
+
+`;
+
 export const TotalCost = styled.span`
   color: #274abb;
   text-transform: capitalize;
@@ -217,4 +221,11 @@ export const NearbyListItem = styled.li`
 
 export const AddNearbyButtonContainer = styled.div`
   margin-top: 5px;
+`;
+
+export const DeleteNearbyButton = styled.button`
+  background-color: transparent;
+  border: none;
+  vertical-align: sub;
+  cursor: pointer;
 `;
