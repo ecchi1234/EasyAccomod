@@ -247,7 +247,7 @@ const Accommodations = () => {
                                         <PricingCardInfoItem>
                                           <FaWarehouse />
                                           <PricingCardInfoItemDesc>
-                                            2 Garages
+                                            Có chỗ để xe
                                           </PricingCardInfoItemDesc>
                                         </PricingCardInfoItem>
                                       </PricingCardInfoDetails>
@@ -276,7 +276,7 @@ const Accommodations = () => {
                                         <PropertyTimeStart>
                                           <FaRegCalendarAlt />
                                           <PropertyTimeStartDesc>
-                                            {e.publicTime}
+                                            {new Date(e.publicTime).toJSON().slice(0,10)}
                                           </PropertyTimeStartDesc>
                                         </PropertyTimeStart>
                                       </IconContext.Provider>

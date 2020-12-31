@@ -91,6 +91,7 @@ const SignUp = (props) => {
   const handleSignUpOwner = () => {
     setError(null);
     setLoading(true);
+    debugger;
     axios
       .post("https://localhost:5000/api/User/register", {
         username: username.value,
@@ -297,11 +298,10 @@ const SignUp = (props) => {
               type="button"
               value={loading ? "Loading..." : "Đăng ký ngay"}
               onClick={() => {
-                console.log(roleSelect);
-                if (roleSelect === 1) {
+                if (+roleSelect === 1) {
                   handleSignUpRenter();
                   console.log(roleSelect);
-                } else if (roleSelect === 2) {
+                } else if (+roleSelect === 2) {
                   handleSignUpOwner();
                 }
               }}

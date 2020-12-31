@@ -95,7 +95,7 @@ const Notification = () => {
                   </NotificationTitleValue>
                 </NotificationTitleSection>
                 <NotificationContentSection>
-                  <div>{`Ngày phê duyệt: ${noti.notifTime}`}</div>
+                  <div>{`Ngày phê duyệt: ${new Date(noti.notifTime).toJSON().slice(0,10)}`}</div>
                   <div>Ngày hết hạn: 01/02/2021</div>
                   <div>Số tiền cần trả: 100.000đ</div>
                   <div>

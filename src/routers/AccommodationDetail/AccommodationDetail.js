@@ -148,6 +148,8 @@ const AccommodationDetail = () => {
   const starRef5 = React.useRef();
   const [isReport, setIsReport] = React.useState(false);
   const [isComment, setIsComment] = React.useState(false);
+  const [title, setTitle] = React.useState('');
+  const titleRef = React.useRef();
 
   const [comment, setComment] = React.useState("");
   const [report, setReport] = React.useState("");
@@ -225,7 +227,7 @@ const AccommodationDetail = () => {
       .post(
         `https://localhost:5000/api/Comment/add?postId=${productId}`,
         {
-          title: "string",
+          title: title,
           star: star,
           reviewContent: comment,
         },
@@ -704,7 +706,7 @@ const AccommodationDetail = () => {
                             </RatingBox>
                           </Top>
                           <Middle>2 phút trước</Middle>
-                          <Bottom>{e.content}</Bottom>
+                          <Bottom>{e.reviewContent}</Bottom>
                         </ReviewInformation>
                       </AccommodDetailReviewInnerContent>
                     );
@@ -813,6 +815,21 @@ const AccommodationDetail = () => {
                                       placeholder="Username"
                                       required
                                       value={user.userName}
+                                    ></ReviewTextInput>
+                                  </FormGroup>
+                                </FormGroupContainer>
+
+                                <FormGroupContainer>
+                                  <FormGroup>
+                                    <ReviewTextInput
+                                      type="text"
+                                      name="username"
+                                      placeholder="Tieu de"
+                                      required
+                                      ref={titleRef}
+                                      onChange={() => {
+                                        setTitle(titleRef.current.value);
+                                      }}
                                     ></ReviewTextInput>
                                   </FormGroup>
                                 </FormGroupContainer>

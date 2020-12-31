@@ -730,7 +730,7 @@ const AddHouse = () => {
                                 type="text"
                                 name="title"
                                 id="title"
-                                placeholder="Tỉnh hoặc thành phố"
+                                placeholder="Giá điện"
                                 required
                                 ref={elecPriceRef}
                                 onChange={() => {
@@ -747,7 +747,7 @@ const AddHouse = () => {
                                 type="text"
                                 name="title"
                                 id="title"
-                                placeholder="Tỉnh hoặc thành phố"
+                                placeholder="Giá nước"
                                 required
                                 ref={waterPriceRef}
                                 onChange={() => {
